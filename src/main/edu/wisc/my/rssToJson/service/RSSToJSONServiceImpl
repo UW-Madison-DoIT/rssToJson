@@ -3,101 +3,108 @@ package edu.wisc.my.rssProxy.service;
 
 import java.io.IOException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
-import org.w3c.dom.Document;
+import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 class RSStoJsonServiceImpl implements RSStoJSONService {
 
 
 public String jsonifiedRssUrl(String url){
-          DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-          Document doc = null;
-          try{
-                  DocumentBuilderFactory f =
-                  DocumentBuilderFactory.newInstance();
-                  DocumentBuilder b = f.newDocumentBuilder();
-                  doc = b.parse(uri);
-                  doc.getDocumentElement().normalize();
-          }
+         //1. Parse the url
+		 SAXParserFactory factoryS = SAXParserFactory.newInstance();
+		 SAXParser saxParser = null;
+		 
+		 final ObjectMapper om = new ObjectMapper();
+		 root = om.reader().createObjectNode();
+		 
+		 try {
+			saxParser = factoryS.newSAXParser();
+		} catch (Exception e) {
+			//TODO: Fail Gracefully
+		}
+ 
+ class jsonHandler extends DefaultHandler{
+		
+		private static final String ITEM = "item";
+		private static final String TITLE = "title";
+		private static final String DESCRIPTION = "description";
+		private static final String LINK = "link";
+				
+		String currentElement;
+		String currentValue;
+		
+		rssItem rssItem = new rssItem();
+		StringBuffer output = new StringBuffer("");
+		boolean isChannel = true;
+		
+		public void startElement(String uri, String localName,
+	            String qName, Attributes attributes)
+	            		throws SAXException {
+		
+			
+			if(qName.equals(ITEM) ){
+				
+				try {
+					output.append(om.writeValueAsString(rssItem));
+					
+				} catch (Exception e) {
+					// TODO Fail gracefully
+				}
+				currentValue = "";
+				isChannel = false;
+				rssItem = new rssItem();
+			}
 
-}
+			currentElement = qName;
+		}
+	
+	public void characters(char ch[], int start, int length) throws SAXException {
+			        currentValue = currentValue +  new String(ch, start, length);
+			}
+		
+		public void endElement(String uri, String localName,
+				String qName) throws SAXException {
 
-public String jsonifiedOutput(String rss){
-
-  StringBuilder jsonOut = new StringBuilder("");
-
-   try{
-
-
-   }catch(Exception e){
-
-   }
-
-}
-
-package webapp;
-
-import java.io.IOException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-public class rssConverter {
- public static final String rss = "<rss xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:media=\"http://search.yahoo.com/mrss/\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:nyt=\"http://www.nytimes.com/namespaces/rss/2.0\" version=\"2.0\"> <channel> <title>NYT > Africa</title> <link> http://www.nytimes.com/pages/world/africa/index.html?partner=rss</link> <atom:link rel=\"self\" type=\"application/rss+xml\" href=\"http://www.nytimes.com/services/xml/rss/nyt/Africa.xml\"/> <description/> <language>en-us</language> <copyright>Copyright 2016 The New York Times Company</copyright> <lastBuildDate>Fri, 25 Nov 2016 19:33:55 GMT</lastBuildDate> <image> <title>NYT > Africa</title> <url> https://static01.nyt.com/images/misc/NYT_logo_rss_250x40.png </url> <link> http://www.nytimes.com/pages/world/africa/index.html?partner=rss</link> </image> <item> <title> What in the World: Which Language Uses the Most Sounds? Click 5 Times for the Answer </title> <link> http://www.nytimes.com/2016/11/25/world/what-in-the-world/click-languages-taa-xoon-xoo-botswana.html?partner=rss</link> <guid isPermaLink=\"true\"> http://www.nytimes.com/2016/11/25/world/what-in-the-world/click-languages-taa-xoon-xoo-botswana.html </guid> <atom:link rel=\"standout\" href=\"http://www.nytimes.com/2016/11/25/world/what-in-the-world/click-languages-taa-xoon-xoo-botswana.html\"/> <media:content url=\"https://static01.nyt.com/images/2016/10/28/world/wit-botswana-xoon/wit-botswana-xoon-moth.jpg\" medium=\"image\" height=\"151\" width=\"151\"/> <media:description> Speakers of Khoisan languages, like the San people in Namibia, use click consonants, packing a lot of information into brief words. </media:description> <media:credit>Eric Lafforgue/Gamma-Rapho, via Getty Images</media:credit> <description> Taa, spoken by a few thousand people in Botswana and Namibia, is believed to have the largest sound inventory of any language in the world. </description> <dc:creator>BRYANT ROUSSEAU</dc:creator> <pubDate>Fri, 25 Nov 2016 10:00:23 GMT</pubDate> <category domain=\"http://www.nytimes.com/namespaces/keywords/des\">Language and Languages</category> <category domain=\"http://www.nytimes.com/namespaces/keywords/nyt_geo\">Namibia</category> <category domain=\"http://www.nytimes.com/namespaces/keywords/nyt_geo\">Botswana</category> <category domain=\"http://www.nytimes.com/namespaces/keywords/nyt_keyword\">Khoisan</category> <category domain=\"http://www.nytimes.com/namespaces/keywords/nyt_keyword\">Xoon</category> <category domain=\"http://www.nytimes.com/namespaces/keywords/nyt_keyword\">Taa</category> </item> </channel> </rss>";		
-public static final String uri = "http://rss.nytimes.com/services/xml/rss/nyt/Africa.xml";
- public static String parseRss(String rss){
-	 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-	 Document doc = null;
-	 StringBuffer stringBuffer = new StringBuffer("");
-	 try {
-		  DocumentBuilderFactory f = 
-                  DocumentBuilderFactory.newInstance();
-          DocumentBuilder b = f.newDocumentBuilder();
-          doc = b.parse(uri);
-          
-          doc.getDocumentElement().normalize();
-          doTheGetting(doc.getDocumentElement(), stringBuffer);
-          System.out.println ("Root element: " + 
-                      doc.getDocumentElement().getNodeName());
-	    
-	 } catch (ParserConfigurationException | SAXException | IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+                if(currentElement.equals(TITLE)){
+                	rssItem.setTitle(currentValue);
+                }
+                
+                if(currentElement.equals(LINK)){
+                	rssItem.setLink(currentValue);
+                }
+                
+                if(currentElement.equals(DESCRIPTION)){
+                	rssItem.setDescription(currentValue);
+                }
+                currentValue = "";
+                rssItem.setChannel(isChannel);
+                }
+		
+		public String getJson(){
+			return this.output.toString();
+		}
 	}
-	 
-	 return doc.toString();
- }
- public static void doTheGetting(Node node, StringBuffer stringBuffer) {
-	    // do something with the current node instead of System.out
-	    System.out.println(node.getNodeName());
-
-	    NodeList nodeList = node.getChildNodes();
-	    for (int i = 0; i < nodeList.getLength(); i++) {
-	        Node currentNode = nodeList.item(i);
-	        if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
-	            //calls this method for all the children which is Element
-	            doTheGetting(currentNode, stringBuffer);
-	        }
-	    }
+	try {
+		jsonHander jh = new jsonHander();
+		saxParser.parse(uri, jh);
+		return jh.getJson();
+		
+	} catch (Exception e) {
+		// TODO Fail gracefully
+		return null;
 	}
- public static void main(String args[]){
-	 System.out.println(parseRss(rss));
- }
-
-
 }
 
 
-}
+
 
