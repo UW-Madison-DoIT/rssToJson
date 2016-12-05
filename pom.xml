@@ -7,7 +7,7 @@
 	<parent>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-parent</artifactId>
-      <version>1.2.5.RELEASE</version>
+      <version>1.2.7.RELEASE</version>
     </parent>
 
     <scm>
@@ -16,6 +16,13 @@
         <url>https://github.com/UW-Madison-DoIT/rssToJson</url>
     </scm>
 		<repositories>
+		<repository>
+            <id>spring-snapshots</id>
+            <url>http://repo.spring.io/libs-snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
       <repository>
         <id>spring-releases</id>
         <name>Spring Releases</name>
@@ -29,6 +36,13 @@
 
     </repositories>
     <pluginRepositories>
+     <pluginRepository>
+            <id>spring-snapshots</id>
+            <url>http://repo.spring.io/libs-snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
       <pluginRepository>
         <id>spring-releases</id>
         <name>Spring Releases</name>
