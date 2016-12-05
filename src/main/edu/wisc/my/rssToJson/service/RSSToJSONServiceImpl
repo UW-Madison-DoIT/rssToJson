@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
-class RSStoJsonServiceImpl implements RSStoJSONService {
+class RSStoJsonServiceImpl implements IRSStoJSONService {
 
 
 public String jsonifiedRssUrl(String url){
