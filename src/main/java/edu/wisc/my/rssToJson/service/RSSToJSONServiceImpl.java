@@ -1,31 +1,34 @@
 
-package edu.wisc.my.rssProxy.service;
+package main.java.edu.wisc.my.rssToJson.service;
 
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.springframework.stereotype.Service;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.springframework.context.annotation.Bean;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import main.java.edu.wisc.my.rssToJson.model.RssItem;
+
 @Service
-class RSStoJsonServiceImpl implements IRSStoJSONService {
+class RSStoJsonServiceImpl implements IRSSToJSONService {
 
-
+public RSStoJsonServiceImpl(){
+	
+}
+	
 public String jsonifiedRssUrl(String url){
          //1. Parse the url
 		 SAXParserFactory factoryS = SAXParserFactory.newInstance();
 		 SAXParser saxParser = null;
 		 
 		 final ObjectMapper om = new ObjectMapper();
-		 root = om.reader().createObjectNode();
+		 JsonNode root = om.reader().createObjectNode();
 		 
 		 try {
 			saxParser = factoryS.newSAXParser();
@@ -43,7 +46,7 @@ public String jsonifiedRssUrl(String url){
 		String currentElement;
 		String currentValue;
 		
-		rssItem rssItem = new rssItem();
+		RssItem rssItem = new RssItem();
 		StringBuffer output = new StringBuffer("");
 		boolean isChannel = true;
 		
@@ -62,7 +65,7 @@ public String jsonifiedRssUrl(String url){
 				}
 				currentValue = "";
 				isChannel = false;
-				rssItem = new rssItem();
+				rssItem = new RssItem();
 			}
 
 			currentElement = qName;
@@ -95,15 +98,15 @@ public String jsonifiedRssUrl(String url){
 		}
 	}
 	try {
-		jsonHander jh = new jsonHander();
-		saxParser.parse(uri, jh);
+		jsonHandler jh = new jsonHandler();
+		saxParser.parse(url, jh);
 		return jh.getJson();
 		
 	} catch (Exception e) {
 		// TODO Fail gracefully
 		return null;
 	}
-}
+}}
 
 
 

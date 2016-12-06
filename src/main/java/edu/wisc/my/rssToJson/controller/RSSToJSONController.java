@@ -1,9 +1,5 @@
-package main.edu.wisc.my.rssToJson.controller;
+package main.java.edu.wisc.my.rssToJson.controller;
 
-import java.io.IOException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,21 +11,24 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import main.edu.wisc.my.rssToJson.service.IRSSToJSONService;
+import main.java.edu.wisc.my.rssToJson.service.IRSSToJSONService;
 
+@Controller
 public class RSSToJSONController {
+	
 	  protected final Logger logger = LoggerFactory.getLogger(getClass());
 	  private IRSSToJSONService rssToJsonService;
 	  private final String ERROR_MESSAGE = "{\"Your rss feed may be unavailable at this time. Please try again later.\"}";
+	private Environment env;
+	  
+	  @Autowired
+	    public void setEnv(Environment env) { this.env = env; }
 	  
 	  @Autowired
 	    public void setRSSToJSONService(IRSSToJSONService rssToJsonService){
@@ -60,7 +59,7 @@ public class RSSToJSONController {
 	            else {
 	              //if its not valid JSON (backwards compatible, wrap in a value object
 	              JSONObject responseObj = new JSONObject();
-	              responseObj.put("returnBody", value);
+	              responseObj.put("returnBody", returnBody);
 	              response.getWriter().write(responseObj.toString());
 	            }
 	            response.setContentType("application/json");
