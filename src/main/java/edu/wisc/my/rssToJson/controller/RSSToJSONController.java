@@ -1,6 +1,10 @@
 package main.java.edu.wisc.my.rssToJson.controller;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,60 +21,101 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import main.java.edu.wisc.my.rssToJson.service.IRSSToJSONService;
+import main.java.edu.wisc.my.rssToJson.service.IRssToJsonService;
 
 @Controller
 public class RSSToJSONController {
 	
 	  protected final Logger logger = LoggerFactory.getLogger(getClass());
-	  private IRSSToJSONService rssToJsonService;
+	  private IRssToJsonService rssToJsonService;
 	  private final String ERROR_MESSAGE = "{\"Your rss feed may be unavailable at this time. Please try again later.\"}";
-	private Environment env;
+	  private Environment env;
 	  
 	  @Autowired
 	    public void setEnv(Environment env) { this.env = env; }
 	  
 	  @Autowired
-	    public void setRSSToJSONService(IRSSToJSONService rssToJsonService){
+	    public void setRSSToJSONService(IRssToJsonService rssToJsonService){
+		    System.out.println("Set service");
 	        this.rssToJsonService = rssToJsonService;
 	    }
-	    
 	  
-	  private IRSSToJSONService getRssToJsonService() {
-		return rssToJsonService;
-	}
-	  
-	  @RequestMapping(value="/rssTransform/{url}")
-	  public @ResponseBody void getJsonifiedRssUrl(HttpServletRequest request, HttpServletResponse response, @PathVariable String url){
+	  /**
+	     * Status page
+	     * @param response the thing to write to
+	     */
+	    @RequestMapping("/rssTransform")
+	    public @ResponseBody void index(HttpServletResponse response){
 	        
-		  String returnBody = null;
-		  try{
-			 returnBody = getRssToJsonService().jsonifiedRssUrl(url);
-			  
-		  }catch(Exception e){
-			  returnBody = ERROR_MESSAGE;
-		  }
-		  
-	        try {
-	            if(isJSONValid(returnBody)) {
-	              //valid json, cool, write it
-	              response.getWriter().write(returnBody);
-	            }
-	            else {
-	              //if its not valid JSON (backwards compatible, wrap in a value object
-	              JSONObject responseObj = new JSONObject();
-	              responseObj.put("returnBody", returnBody);
-	              response.getWriter().write(responseObj.toString());
-	            }
-	            response.setContentType("application/json");
-	            response.setStatus(HttpServletResponse.SC_OK);
+	    	try {
+	          JSONObject responseObj = new JSONObject();
+	          responseObj.put("status", "up");
+
+	          response.getWriter().write(responseObj.toString());
+	          response.setContentType("application/json");
+	          response.setStatus(HttpServletResponse.SC_OK);
 	        } catch (IOException e) {
-	            logger.error("Issues happened while trying to write json", e);
+	            logger.error("Issues happened while trying to write Status", e);
 	            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 	        }
 	    }
+	  
+	  @RequestMapping(value="/rssTransform/{url}")
+	  public @ResponseBody void getJsonifiedRssUrl(HttpServletRequest request, HttpServletResponse response, @PathVariable String url){
+	      
+		  try {
+	          JSONObject responseObj = new JSONObject();
+	      //    responseObj.put("status", this.rssToJsonService.toString());
+	         
+	          responseObj.put("status2", "up url good");
+	     
+	          response.getWriter().write(responseObj.toString());
+	          response.setContentType("application/json");
+	          response.setStatus(HttpServletResponse.SC_OK);
+	        } catch (IOException e) {
+	            logger.error("Issues happened while trying to write Status", e);
+	            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+	        }
+		  
+		  
+//		  
+//		logger.warn("CONJTROLLER METHOD");
+//		System.out.println("CONTOLLLERE");
+//		String returnBody = "";
+//		try {
+//			String webServiceURL = url;
+//			URL geoLocationDetailXMLURL = new URL(webServiceURL);
+//			HttpURLConnection geoLocationDetailXMLURLConnection = (HttpURLConnection) geoLocationDetailXMLURL
+//					.openConnection();
+//			InputStream in = new BufferedInputStream(geoLocationDetailXMLURLConnection.getInputStream());
+//			returnBody = getRssToJsonService().jsonifiedRssUrl(url);
+//		} catch (Exception e) {
+//			returnBody = ERROR_MESSAGE;
+//		}
+//		logger.warn(returnBody);
+//		try {
+//			if (isJSONValid(returnBody)) {
+//				response.getWriter().write(returnBody);
+//				response.setContentType("application/json");
+//				response.setStatus(HttpServletResponse.SC_OK);
+//			} else {
+//				JSONObject responseObj = new JSONObject();
+//				responseObj.put("returnBody", returnBody);
+//				response.getWriter().write(responseObj.toString());
+//			}
+//			response.setContentType("application/json");
+//			response.setStatus(HttpServletResponse.SC_OK);
+//		} catch (IOException e) {
+//			logger.error("Issues happened while trying to write json", e);
+//			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//		}
+	}
 	    
-	  private boolean isJSONValid(String test) {
+	  private IRssToJsonService getRssToJsonService() {
+		return this.rssToJsonService;
+	}
+
+	private boolean isJSONValid(String test) {
 	      try {
 	          new JSONObject(test);
 	      } catch (JSONException ex) {

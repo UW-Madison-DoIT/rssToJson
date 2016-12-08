@@ -76,5 +76,14 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/doug/.m2/repository/org/springframework/data/spring-data-jpa/1.7.4.RELEASE/spring-data-jpa-1.7.4.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/home/doug/.m2/repository/org/springframework/data/spring-data-commons/1.9.4.RELEASE/spring-data-commons-1.9.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/home/doug/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.6.3/jackson-core-2.6.3.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="com.fasterxml.jackson.core"/>
+			<attribute name="maven.artifactId" value="jackson-core"/>
+			<attribute name="maven.version" value="2.6.3"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
