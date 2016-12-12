@@ -32,7 +32,11 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController;
+import main.java.edu.wisc.my.rssToJson.model.RssItem;
 import main.java.edu.wisc.my.rssToJson.service.*;
 
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
@@ -44,8 +48,16 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
-         SpringApplication.run(Application.class, args);
-
-    }
+    SpringApplication.run(Application.class, args);
+//            RSSToJSONController rjc = new RSSToJSONController();
+//            rjc.setRSSToJSONService(new RsstoJsonServiceImpl());
+//            RssItem ri = new RssItem();
+//            ri.setTitle("TESTING THIS");
+//            ri.setLink("TESTING");
+//            ri.setChannel(true);
+//            ri.setDescription("THIS HERE");
+//          
+//            rjc.getJsonifiedRssUrl(null, null, "http://www.ncaa.com/news/football/fbs/rss.xml");
+//    }
 
 }

@@ -1,6 +1,9 @@
 package main.java.edu.wisc.my.rssToJson.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.databind.*;
 
 public class RssItem {
 	

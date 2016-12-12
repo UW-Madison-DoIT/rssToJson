@@ -30,32 +30,49 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 
 	}
 
-	private InputStream getInputStream(String url) throws IOException {
+//	private String demoString(BufferedInputStream inStream){
+//		logger.trace("DEMO THE LOG THING");
+//		
+//		
+//		    java.util.Scanner s = new java.util.Scanner(inStream).useDelimiter("\\A");
+//		    String x = s.hasNext() ? s.next() : "";
+//		    logger.warn(x);
+//             return x;
+//	}
+//	
+	
+//	private InputStream getInputStream(String url) throws IOException {
+//
+//	try {
+//	       String webServiceURL=url;
+//	        URL rssUrl = new URL(webServiceURL);
+//	        HttpURLConnection geoLocationDetailXMLURLConnection = (HttpURLConnection)rssUrl.openConnection();
+//	        InputStream in = new BufferedInputStream(geoLocationDetailXMLURLConnection.getInputStream());
+//	        logger.trace(in.toString());
+//	        return in;
+//	}catch(Exception e){
+//		return null;
+//	}
+//	}
 
-	try {
-	       String webServiceURL=url;
-	        URL geoLocationDetailXMLURL = new URL(webServiceURL);
-	        HttpURLConnection geoLocationDetailXMLURLConnection = (HttpURLConnection)geoLocationDetailXMLURL.openConnection();
-	        InputStream in = new BufferedInputStream(geoLocationDetailXMLURLConnection.getInputStream());
-	        return in;
-	}catch(Exception e){
-		return null;
-	}
+//	public String jsonifiedRssUrl(String url){
+//		logger.warn("SHOULD NOT BE HERE");
+//		try {
+//			return jsonifiedRssUrl(url, getInputStream(url));
+//		} catch (Exception e) {
+//			return null;
+//		}
+//	}
+	@Override
+	public String testMe(){
+		return "TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!";
 	}
 	
 	@Override
-	public String jsonifiedRssUrl(String url){
-		try {
-			return jsonifiedRssUrl(url, getInputStream(url));
-		} catch (Exception e) {
-			return null;
-		}
-	}
-	
-	@SuppressWarnings("finally")
-	public String jsonifiedRssUrl(String url, InputStream in) {
-		logger.warn("IN SERVICE");
-		System.out.println("SERVICE METHOD");
+	public String getJsonFromURL(String url, InputStream in) {
+		logger.trace("STEP THREE: IN THE SERVICE");
+        //demoString((BufferedInputStream) in);
+        String retVal = "";
 		try {
 
 			// 1. Parse the url
@@ -70,7 +87,7 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 				private static final String DESCRIPTION = "description";
 				private static final String LINK = "link";
 				
-				
+				String cleanedCurrentValue;
 				String currentElement;
 			
 				String currentValue = "";
@@ -79,8 +96,9 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 				StringBuffer output = new StringBuffer("");
 				boolean isChannel = true;
 
-				private String stringCleaner(String jsonItem) {
-
+				private void stringCleaner(String jsonItem) {
+					logger.warn("STRING CLEANING " + jsonItem);
+                    cleanedCurrentValue = "";
 					char backslash = "\\".toCharArray()[0];
 					char[] formatting = jsonItem.toCharArray();
 					StringBuffer cleanedItem = new StringBuffer("");
@@ -102,17 +120,19 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 					}
 					String cleaned = cleanedItem.toString().trim();
 					cleaned.replaceAll("null ", "");
-					return cleaned;
+					cleanedCurrentValue = cleaned;
 				}
 
 				public void startElement(String uri, String localName, String qName, Attributes attributes)
 						throws SAXException {
 
+					logger.trace(qName);
 					if (qName.equals(ITEM)) {
 
 						try {
-							String cleanedString = stringCleaner(om.writeValueAsString(rssItem));
-							output.append(cleanedString);
+							System.out.println(om.writeValueAsString(rssItem));
+							stringCleaner(om.writeValueAsString(rssItem));
+							output.append(cleanedCurrentValue);
 						} catch (Exception e) {
 							// ContinueProcessing
 						}
@@ -149,16 +169,19 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 				}
 
 				public String getJson() {
+					logger.trace("THIS IS THE JSON OUTPUT " + output.toString());
 					return this.output.toString();
 				}
 			}
 
 			jsonHandler jh = new jsonHandler();
-			saxParser.parse(url, jh);
-			retVal = jh.getJson();
+			saxParser.parse(in, jh);
+			retVal =  jh.getJson();
 
-		} finally {
-			return retVal;
+		}catch(Exception e){
+			logger.warn("THIS IS YOUR ERROR _ " + e.getMessage());
+			e.printStackTrace();
 		}
+	        return retVal;
 	}
 }
