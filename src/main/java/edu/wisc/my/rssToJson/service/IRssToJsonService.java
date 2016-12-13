@@ -7,7 +7,4 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IRssToJsonService {
 	public String getJsonFromURL(String url, InputStream in);
-
-	String testMe();
-
 }

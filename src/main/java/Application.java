@@ -48,16 +48,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
-    SpringApplication.run(Application.class, args);
-//            RSSToJSONController rjc = new RSSToJSONController();
-//            rjc.setRSSToJSONService(new RsstoJsonServiceImpl());
-//            RssItem ri = new RssItem();
-//            ri.setTitle("TESTING THIS");
-//            ri.setLink("TESTING");
-//            ri.setChannel(true);
-//            ri.setDescription("THIS HERE");
-//          
-//            rjc.getJsonifiedRssUrl(null, null, "http://www.ncaa.com/news/football/fbs/rss.xml");
-//    }
+            SpringApplication.run(Application.class, args);
+    }
 
 }

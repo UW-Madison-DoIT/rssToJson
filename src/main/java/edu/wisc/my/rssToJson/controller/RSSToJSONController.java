@@ -68,8 +68,7 @@ public class RSSToJSONController {
 	    
 	  @RequestMapping(value="/rssTransform/demo/football")
 	  public @ResponseBody void getDemoJson(HttpServletRequest request, HttpServletResponse response){
-           logger.warn("STEP ONE I AM IN THE CONTROLLER");
-	       String paramaterizedURL = env.getRequiredProperty("demo.url");
+           String paramaterizedURL = env.getRequiredProperty("demo.url");
 	       if(!StringUtils.isEmpty(paramaterizedURL)){
 	    	   getJsonifiedRssUrl(request, response, paramaterizedURL);
 	       }
@@ -77,27 +76,18 @@ public class RSSToJSONController {
 	  }
 	  
 	  private String getErrorString(){
-		  return ERROR_MESSAGE + " =" + errStep + " " + env.getProperty("demo.url");
+		  return ERROR_MESSAGE;
 	  }
 	  
 	  @RequestMapping(value="/rssTransform/{url}")
 	  public @ResponseBody void getJsonifiedRssUrl(HttpServletRequest request, HttpServletResponse response, @PathVariable String url){
 	   
-		logger.warn("STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR " + url);  
-	    
 		String returnBody = "";
 		try {
-			logger.warn("3. Here?");  
 			URL rssUrl = new URL(url);
-			logger.warn("4. Here?"); 
 			HttpURLConnection urlConnection = (HttpURLConnection) rssUrl
 					.openConnection();
-			logger.warn("5. Here?"); 
 			InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-			
-			logger.warn("6. Here? " + getRssToJsonService().toString()); 
-			logger.warn(getRssToJsonService().testMe());
-			logger.warn("7. Here?"); 
 			returnBody = getRssToJsonService().getJsonFromURL(url, in);
 			
 		
@@ -106,7 +96,7 @@ public class RSSToJSONController {
 			logger.warn(e.getMessage());
 			returnBody = getErrorString();
 		}
-		logger.warn("RETURN " + returnBody);
+		logger.trace("RETURN " + returnBody);
 		
 		try {
 			if (isJSONValid(returnBody)) {
@@ -131,7 +121,8 @@ public class RSSToJSONController {
 	}
 
 	private boolean isJSONValid(String test) {
-	      try {
+	      
+		try {
 	          new JSONObject(test);
 	      } catch (JSONException ex) {
 	          try {

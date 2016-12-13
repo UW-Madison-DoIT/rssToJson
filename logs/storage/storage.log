@@ -1,281 +1,329 @@
-[2016-12-12 15:41:53,522] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Bound request context to thread: org.apache.catalina.connector.RequestFacade@241546f2
-[2016-12-12 15:41:53,522] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - DispatcherServlet with name 'dispatcherServlet' processing GET request for [/rssTransform/demo/football]
-[2016-12-12 15:41:53,523] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Testing handler map [org.springframework.web.servlet.handler.SimpleUrlHandlerMapping@b961769] in DispatcherServlet with name 'dispatcherServlet'
-[2016-12-12 15:41:53,523] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - No handler mapping found for [/rssTransform/demo/football]
-[2016-12-12 15:41:53,523] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Testing handler map [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping@4798d3ab] in DispatcherServlet with name 'dispatcherServlet'
-[2016-12-12 15:41:53,523] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Looking up handler method for path /rssTransform/demo/football
-[2016-12-12 15:41:53,523] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Found 1 matching mapping(s) for [/rssTransform/demo/football] : [{[/rssTransform/demo/football]}]
-[2016-12-12 15:41:53,524] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Returning handler method [public void main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController.getDemoJson(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)]
-[2016-12-12 15:41:53,524] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Testing handler adapter [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter@17b839e7]
-[2016-12-12 15:41:53,524] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Last-Modified value for [/rssTransform/demo/football] is: -1
-[2016-12-12 15:41:53,524] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod - Invoking [RSSToJSONController.getDemoJson] method with arguments [org.apache.catalina.connector.RequestFacade@241546f2, org.apache.catalina.connector.ResponseFacade@49967957]
-[2016-12-12 15:41:53,524] WARN [http-nio-8080-exec-2] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP ONE I AM IN THE CONTROLLER
-[2016-12-12 15:41:53,525] WARN [http-nio-8080-exec-2] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
-[2016-12-12 15:41:53,525] WARN [http-nio-8080-exec-2] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
-[2016-12-12 15:41:53,525] WARN [http-nio-8080-exec-2] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
-[2016-12-12 15:41:53,525] WARN [http-nio-8080-exec-2] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
-[2016-12-12 15:41:53,540] WARN [http-nio-8080-exec-2] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@19d6a4f7
-[2016-12-12 15:41:53,541] WARN [http-nio-8080-exec-2] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
-[2016-12-12 15:41:53,541] WARN [http-nio-8080-exec-2] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
-[2016-12-12 15:41:53,542] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Cleared thread-bound request context: org.apache.catalina.connector.RequestFacade@241546f2
-[2016-12-12 15:41:53,543] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Could not complete request
-org.springframework.web.util.NestedServletException: Handler processing failed; nested exception is java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonProperty$Access
-	at org.springframework.web.servlet.DispatcherServlet.triggerAfterCompletionWithError(DispatcherServlet.java:1303) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:977) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:967) [spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:858) [spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:843) [spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:291) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-embed-websocket-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:77) [spring-web-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:85) [spring-web-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:217) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:142) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:518) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1091) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:673) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_80]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_80]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_80]
-Caused by: java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonProperty$Access
-	at com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder.findAccess(POJOPropertyBuilder.java:542) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder.removeNonVisible(POJOPropertyBuilder.java:623) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector._removeUnwantedAccessor(POJOPropertiesCollector.java:697) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector.collectAll(POJOPropertiesCollector.java:298) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector.getJsonValueMethod(POJOPropertiesCollector.java:169) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.introspect.BasicBeanDescription.findJsonValueMethod(BasicBeanDescription.java:222) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.ser.BasicSerializerFactory.findSerializerByAnnotations(BasicSerializerFactory.java:355) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.ser.BeanSerializerFactory._createSerializer2(BeanSerializerFactory.java:210) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.ser.BeanSerializerFactory.createSerializer(BeanSerializerFactory.java:153) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.SerializerProvider._createUntypedSerializer(SerializerProvider.java:1203) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.SerializerProvider._createAndCacheUntypedSerializer(SerializerProvider.java:1157) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.SerializerProvider.findValueSerializer(SerializerProvider.java:481) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.SerializerProvider.findTypedValueSerializer(SerializerProvider.java:679) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider.serializeValue(DefaultSerializerProvider.java:107) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.ObjectMapper._configAndWriteValue(ObjectMapper.java:3559) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(ObjectMapper.java:2927) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl$1jsonHandler.startElement(RsstoJsonServiceImpl.java:132) ~[classes/:na]
-	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:509) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1363) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2786) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:606) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:848) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:777) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1213) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:648) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl.parse(SAXParserImpl.java:332) ~[na:1.7.0_80]
-	at javax.xml.parsers.SAXParser.parse(SAXParser.java:195) ~[na:1.7.0_80]
-	at main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl.getJsonFromURL(RsstoJsonServiceImpl.java:176) ~[classes/:na]
-	at main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController.getJsonifiedRssUrl(RSSToJSONController.java:95) ~[classes/:na]
-	at main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController.getDemoJson(RSSToJSONController.java:69) ~[classes/:na]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.7.0_80]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57) ~[na:1.7.0_80]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.7.0_80]
-	at java.lang.reflect.Method.invoke(Method.java:606) ~[na:1.7.0_80]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221) ~[spring-web-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:137) ~[spring-web-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:775) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:705) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	... 34 common frames omitted
-[2016-12-12 15:41:53,544] ERROR [http-nio-8080-exec-2] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Handler processing failed; nested exception is java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonProperty$Access] with root cause
-java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonProperty$Access
-	at com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder.findAccess(POJOPropertyBuilder.java:542) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.introspect.POJOPropertyBuilder.removeNonVisible(POJOPropertyBuilder.java:623) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector._removeUnwantedAccessor(POJOPropertiesCollector.java:697) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector.collectAll(POJOPropertiesCollector.java:298) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector.getJsonValueMethod(POJOPropertiesCollector.java:169) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.introspect.BasicBeanDescription.findJsonValueMethod(BasicBeanDescription.java:222) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.ser.BasicSerializerFactory.findSerializerByAnnotations(BasicSerializerFactory.java:355) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.ser.BeanSerializerFactory._createSerializer2(BeanSerializerFactory.java:210) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.ser.BeanSerializerFactory.createSerializer(BeanSerializerFactory.java:153) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.SerializerProvider._createUntypedSerializer(SerializerProvider.java:1203) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.SerializerProvider._createAndCacheUntypedSerializer(SerializerProvider.java:1157) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.SerializerProvider.findValueSerializer(SerializerProvider.java:481) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.SerializerProvider.findTypedValueSerializer(SerializerProvider.java:679) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider.serializeValue(DefaultSerializerProvider.java:107) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.ObjectMapper._configAndWriteValue(ObjectMapper.java:3559) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(ObjectMapper.java:2927) ~[jackson-databind-2.6.3.jar:2.6.3]
-	at main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl$1jsonHandler.startElement(RsstoJsonServiceImpl.java:132) ~[classes/:na]
-	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:509) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1363) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2786) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:606) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:848) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:777) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1213) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:648) ~[na:1.7.0_80]
-	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl.parse(SAXParserImpl.java:332) ~[na:1.7.0_80]
-	at javax.xml.parsers.SAXParser.parse(SAXParser.java:195) ~[na:1.7.0_80]
-	at main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl.getJsonFromURL(RsstoJsonServiceImpl.java:176) ~[classes/:na]
-	at main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController.getJsonifiedRssUrl(RSSToJSONController.java:95) ~[classes/:na]
-	at main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController.getDemoJson(RSSToJSONController.java:69) ~[classes/:na]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.7.0_80]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57) ~[na:1.7.0_80]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.7.0_80]
-	at java.lang.reflect.Method.invoke(Method.java:606) ~[na:1.7.0_80]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221) ~[spring-web-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:137) ~[spring-web-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:775) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:705) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:959) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:967) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:858) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622) ~[tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:843) ~[spring-webmvc-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729) ~[tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:291) ~[tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) ~[tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239) ~[tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) ~[tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:77) ~[spring-web-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239) ~[tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) ~[tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:85) ~[spring-web-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.1.8.RELEASE.jar:4.1.8.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239) ~[tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) ~[tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:217) ~[tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:142) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:518) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1091) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:673) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_80]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_80]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.0.28.jar:8.0.28]
-	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_80]
-[2016-12-12 15:41:53,545] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Bound request context to thread: org.apache.catalina.core.ApplicationHttpRequest@7c1c159f
-[2016-12-12 15:41:53,545] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - DispatcherServlet with name 'dispatcherServlet' processing GET request for [/error]
-[2016-12-12 15:41:53,545] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Testing handler map [org.springframework.web.servlet.handler.SimpleUrlHandlerMapping@b961769] in DispatcherServlet with name 'dispatcherServlet'
-[2016-12-12 15:41:53,545] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - No handler mapping found for [/error]
-[2016-12-12 15:41:53,545] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Testing handler map [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping@4798d3ab] in DispatcherServlet with name 'dispatcherServlet'
-[2016-12-12 15:41:53,545] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Looking up handler method for path /error
-[2016-12-12 15:41:53,546] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Found 2 matching mapping(s) for [/error] : [{[/error],produces=[text/html]}, {[/error]}]
-[2016-12-12 15:41:53,546] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Returning handler method [public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest)]
-[2016-12-12 15:41:53,546] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Testing handler adapter [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter@17b839e7]
-[2016-12-12 15:41:53,546] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Last-Modified value for [/error] is: -1
-[2016-12-12 15:41:53,547] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod - Invoking [BasicErrorController.errorHtml] method with arguments [org.apache.catalina.core.ApplicationHttpRequest@7c1c159f]
-[2016-12-12 15:41:53,547] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod - Method [errorHtml] returned [ModelAndView: reference to view with name 'error'; model is {timestamp=Mon Dec 12 15:41:53 CST 2016, status=500, error=Internal Server Error, exception=java.lang.NoClassDefFoundError, message=com/fasterxml/jackson/annotation/JsonProperty$Access, path=/rssTransform/demo/football}]
-[2016-12-12 15:41:53,547] TRACE [http-nio-8080-exec-2] org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite - Testing if return value handler [org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler@4729f5d] supports [class org.springframework.web.servlet.ModelAndView]
-[2016-12-12 15:41:53,547] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.view.ContentNegotiatingViewResolver - Requested media types are [text/html, text/html;q=0.8] based on Accept header types and producible media types [text/html])
-[2016-12-12 15:41:53,547] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.view.ContentNegotiatingViewResolver - Returning [org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration$SpelView@2ed3196e] based on requested media type 'text/html'
-[2016-12-12 15:41:53,547] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Rendering view [org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration$SpelView@2ed3196e] in DispatcherServlet with name 'dispatcherServlet'
-[2016-12-12 15:41:53,548] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Cleared thread-bound request context: org.apache.catalina.core.ApplicationHttpRequest@7c1c159f
-[2016-12-12 15:41:53,548] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Successfully completed request
-[2016-12-12 15:48:37,091] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
-[2016-12-12 15:48:40,848] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
-[2016-12-12 15:48:41,719] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
-[2016-12-12 15:48:44,263] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
-[2016-12-12 15:48:58,423] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - null
-[2016-12-12 15:49:06,371] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
-[2016-12-12 15:49:11,472] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
-[2016-12-12 15:49:13,704] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
-[2016-12-12 15:49:28,032] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
-[2016-12-12 15:50:38,268] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
-[2016-12-12 15:50:38,953] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
-[2016-12-12 15:50:39,625] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
-[2016-12-12 15:50:41,425] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
-[2016-12-12 15:50:42,042] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@7f6fa3f
-[2016-12-12 15:50:42,881] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
-[2016-12-12 15:50:44,906] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
-[2016-12-12 15:51:27,451] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
-[2016-12-12 15:51:27,454] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
-[2016-12-12 15:51:27,455] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
-[2016-12-12 15:51:27,457] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
-[2016-12-12 15:51:27,478] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@7dc999c4
-[2016-12-12 15:51:27,479] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
-[2016-12-12 15:51:27,479] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
-[2016-12-12 15:54:23,590] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
-[2016-12-12 15:54:23,594] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
-[2016-12-12 15:54:23,594] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
-[2016-12-12 15:54:23,596] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
-[2016-12-12 15:54:23,649] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@457cb2f7
-[2016-12-12 15:54:23,649] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
-[2016-12-12 15:54:23,649] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
-[2016-12-12 16:03:40,454] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
-[2016-12-12 16:03:44,424] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
-[2016-12-12 16:03:45,264] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
-[2016-12-12 16:03:47,160] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
-[2016-12-12 16:03:47,705] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@3e9b69e6
-[2016-12-12 16:03:47,968] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
-[2016-12-12 16:03:48,512] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
-[2016-12-12 16:05:46,133] INFO [Thread-1] org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@784d15de: startup date [Mon Dec 12 15:41:36 CST 2016]; root of context hierarchy
-[2016-12-12 16:05:46,140] INFO [Thread-1] org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
-[2016-12-12 16:06:00,972] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
-[2016-12-12 16:06:00,975] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
-[2016-12-12 16:06:00,975] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
-[2016-12-12 16:06:00,977] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
-[2016-12-12 16:06:00,999] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@3e8e5360
-[2016-12-12 16:06:00,999] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
-[2016-12-12 16:06:00,999] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
-[2016-12-12 16:10:16,344] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
-[2016-12-12 16:10:16,348] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
-[2016-12-12 16:10:16,348] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
-[2016-12-12 16:10:16,350] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
-[2016-12-12 16:10:16,370] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@5d5aba8d
-[2016-12-12 16:10:16,370] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
-[2016-12-12 16:10:16,370] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
-[2016-12-12 17:03:06,655] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
-[2016-12-12 17:03:10,131] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
-[2016-12-12 17:03:10,979] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
-[2016-12-12 17:03:12,491] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
-[2016-12-12 17:03:13,372] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@51e05ddd
-[2016-12-12 17:03:13,691] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
-[2016-12-12 17:03:15,211] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
-[2016-12-12 17:04:33,035] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
-[2016-12-12 17:04:33,038] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
-[2016-12-12 17:04:33,038] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
-[2016-12-12 17:04:33,040] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
-[2016-12-12 17:04:33,083] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@47d5e2b
-[2016-12-12 17:04:33,084] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
-[2016-12-12 17:04:33,084] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
-[2016-12-12 17:04:57,124] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
-[2016-12-12 17:04:57,126] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
-[2016-12-12 17:04:57,127] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
-[2016-12-12 17:04:57,128] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
-[2016-12-12 17:04:57,138] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@3f00b6a
-[2016-12-12 17:04:57,139] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
-[2016-12-12 17:04:57,139] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
-[2016-12-12 17:05:18,559] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
-[2016-12-12 17:05:18,561] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
-[2016-12-12 17:05:18,562] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
-[2016-12-12 17:05:18,564] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
-[2016-12-12 17:05:18,573] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@47d5e2b
-[2016-12-12 17:05:18,573] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
-[2016-12-12 17:05:18,574] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
+[2016-12-13 08:00:38,703] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
+[2016-12-13 08:00:42,755] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
+[2016-12-13 08:00:44,044] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
+[2016-12-13 08:00:45,828] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
+[2016-12-13 08:00:47,004] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@3e2a9a49
+[2016-12-13 08:00:47,540] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
+[2016-12-13 08:00:47,972] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
+[2016-12-13 08:06:41,878] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
+[2016-12-13 08:06:41,884] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
+[2016-12-13 08:06:41,885] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
+[2016-12-13 08:06:41,888] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
+[2016-12-13 08:06:41,945] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@3e8e5360
+[2016-12-13 08:06:41,946] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
+[2016-12-13 08:06:41,946] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
+[2016-12-13 08:10:45,138] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
+[2016-12-13 08:10:45,145] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
+[2016-12-13 08:10:45,146] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
+[2016-12-13 08:10:45,149] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
+[2016-12-13 08:10:45,259] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@457cb2f7
+[2016-12-13 08:10:45,260] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
+[2016-12-13 08:10:45,261] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
+[2016-12-13 08:11:10,880] WARN [main] main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl - STRING CLEANING {"title":"\n\n NCAA RSS","link":"\n http://www.ncaa.com/news/football/fbs/rss.xml","description":"\n NCAA RSS - FBS Football"}
+[2016-12-13 08:12:57,293] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
+[2016-12-13 08:12:57,300] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
+[2016-12-13 08:12:57,301] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
+[2016-12-13 08:12:57,304] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
+[2016-12-13 08:12:57,339] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@7dc999c4
+[2016-12-13 08:12:57,340] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
+[2016-12-13 08:12:57,340] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
+[2016-12-13 08:13:04,050] WARN [main] main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl - STRING CLEANING {"title":"\n\n NCAA RSS","link":"\n http://www.ncaa.com/news/football/fbs/rss.xml","description":"\n NCAA RSS - FBS Football"}
+[2016-12-13 08:14:54,437] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
+[2016-12-13 08:14:54,440] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
+[2016-12-13 08:14:54,441] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
+[2016-12-13 08:14:54,442] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
+[2016-12-13 08:14:54,556] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@4d23fca5
+[2016-12-13 08:14:54,557] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
+[2016-12-13 08:14:54,557] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
+[2016-12-13 08:14:59,603] WARN [main] main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl - STRING CLEANING {"title":"\n\n NCAA RSS","link":"\n http://www.ncaa.com/news/football/fbs/rss.xml","description":"\n NCAA RSS - FBS Football"}
+[2016-12-13 08:17:39,800] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
+[2016-12-13 08:17:39,805] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
+[2016-12-13 08:17:39,805] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
+[2016-12-13 08:17:39,808] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
+[2016-12-13 08:17:39,830] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@63145a0c
+[2016-12-13 08:17:39,830] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
+[2016-12-13 08:17:39,830] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
+[2016-12-13 08:17:44,574] WARN [main] main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl - STRING CLEANING {"title":"\n\n NCAA RSS","link":"\n http://www.ncaa.com/news/football/fbs/rss.xml","description":"\n NCAA RSS - FBS Football"}
+[2016-12-13 08:24:49,536] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
+[2016-12-13 08:24:49,539] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
+[2016-12-13 08:24:49,540] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
+[2016-12-13 08:24:49,542] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
+[2016-12-13 08:24:49,665] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@4d23fca5
+[2016-12-13 08:24:49,666] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
+[2016-12-13 08:24:49,666] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
+[2016-12-13 08:24:52,718] WARN [main] main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl - STRING CLEANING {"title":"\n\n NCAA RSS","link":"\n http://www.ncaa.com/news/football/fbs/rss.xml","description":"\n NCAA RSS - FBS Football"}
+[2016-12-13 08:30:09,663] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
+[2016-12-13 08:30:09,666] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
+[2016-12-13 08:30:09,667] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
+[2016-12-13 08:30:09,669] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
+[2016-12-13 08:30:09,759] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@34cd2fd0
+[2016-12-13 08:30:09,759] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
+[2016-12-13 08:30:09,759] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
+[2016-12-13 08:30:26,157] WARN [main] main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl - STRING CLEANING {"title":"NCAA RSS","link":"http://www.ncaa.com/news/football/fbs/rss.xml","description":"NCAA RSS - FBS Football"}
+[2016-12-13 08:31:09,630] WARN [main] main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl - STRING CLEANING {"title":"College football: AP All-America teams released","link":"http://www.ncaa.com/news/football/article/2016-12-12/college-football-ap-all-america-teams-released","description":""}
+[2016-12-13 08:32:19,620] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - STEP TWO: I AM IN THE REQUIRED CONTROLLER METHOD FOR http://www.ncaa.com/news/football/fbs/rss.xml
+[2016-12-13 08:32:26,024] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 3. Here?
+[2016-12-13 08:32:28,304] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 4. Here?
+[2016-12-13 08:32:30,888] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 5. Here?
+[2016-12-13 08:32:35,984] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 6. Here? main.java.edu.wisc.my.rssToJson.service.RsstoJsonServiceImpl@2aedfc73
+[2016-12-13 08:32:38,256] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST!!!!!!!!!!!!!
+[2016-12-13 08:32:40,352] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - 7. Here?
+[2016-12-13 08:34:52,363] WARN [main] main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController - RETURN {"title":"NCAA RSS","link":"http://www.ncaa.com/news/football/fbs/rss.xml","description":"NCAA RSS - FBS Football"}{"title":"College football: AP All-America teams released","link":"http://www.ncaa.com/news/football/article/2016-12-12/college-football-ap-all-america-teams-released","description":""}{"title":"College football bowl game predictions: Every contest analyzed, picked","link":"http://www.ncaa.com/news/football/article/2016-12-12/college-football-bowl-game-predictions-every-contest-analyzed","description":""}{"title":"College football: Top five Heisman moments from Lamar Jackson in 2016","link":"http://www.ncaa.com/news/football/article/2016-12-11/college-football-top-five-heisman-moments-lamar-jackson-2016","description":""}{"title":"Michigan football: Miami is full of memories for Jim Harbaugh","link":"http://www.ncaa.com/news/football/article/2016-12-11/michigan-football-miami-full-memories-jim-harbaugh","description":""}{"title":"College football: Kiffin-Hurts tandem has Alabama at doorstep of 15-0","link":"http://www.ncaa.com/news/football/article/2016-12-11/college-football-kiffin-hurts-tandem-has-alabama-doorstep-15-0","description":""}{"title":"College football: Who could win the Heisman Trophy in 2017?","link":"http://www.ncaa.com/news/football/article/2016-12-11/college-football-who-could-win-heisman-trophy-2017","description":""}{"title":"College football: Charlie Strong to become next head coach at USF","link":"http://www.ncaa.com/news/football/article/2016-12-11/college-football-charlie-strong-become-next-head-coach-usf","description":""}{"title":"Army-Navy Game: Army comes up big for the late Brandon Jackson","link":"http://www.ncaa.com/news/football/article/2016-12-11/army-navy-game-army-comes-big-late-brandon-jackson","description":""}{"title":"Heisman Trophy: Reactions to Louisville's Lamar Jackson winning 82nd honor","link":"http://www.ncaa.com/news/football/article/2016-12-10/heisman-trophy-reactions-louisvilles-lamar-jackson-winning-82nd","description":""}
+[2016-12-13 08:59:53,120] DEBUG [main.java.Application.main()] org.springframework.web.context.support.StandardServletEnvironment - Adding [servletConfigInitParams] PropertySource with lowest search precedence
+[2016-12-13 08:59:53,122] DEBUG [main.java.Application.main()] org.springframework.web.context.support.StandardServletEnvironment - Adding [servletContextInitParams] PropertySource with lowest search precedence
+[2016-12-13 08:59:53,122] DEBUG [main.java.Application.main()] org.springframework.web.context.support.StandardServletEnvironment - Adding [systemProperties] PropertySource with lowest search precedence
+[2016-12-13 08:59:53,122] DEBUG [main.java.Application.main()] org.springframework.web.context.support.StandardServletEnvironment - Adding [systemEnvironment] PropertySource with lowest search precedence
+[2016-12-13 08:59:53,123] DEBUG [main.java.Application.main()] org.springframework.web.context.support.StandardServletEnvironment - Initialized StandardServletEnvironment with PropertySources [servletConfigInitParams,servletContextInitParams,systemProperties,systemEnvironment]
+[2016-12-13 08:59:53,141] INFO [main.java.Application.main()] main.java.Application - Starting Application on dyn-128-104-18-133 with PID 23021 (/home/doug/git/rssToJson/target/classes started by doug in /home/doug/git/rssToJson)
+[2016-12-13 08:59:53,163] INFO [main.java.Application.main()] org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@51ed4054: startup date [Tue Dec 13 08:59:53 CST 2016]; root of context hierarchy
+[2016-12-13 08:59:53,185] DEBUG [main.java.Application.main()] org.springframework.web.context.support.StandardServletEnvironment - Adding [class path resource [application.properties]] PropertySource with lowest search precedence
+[2016-12-13 08:59:53,513] INFO [main.java.Application.main()] org.springframework.beans.factory.support.DefaultListableBeanFactory - Overriding bean definition for bean 'beanNameViewResolver': replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter.class]]
+[2016-12-13 08:59:53,643] DEBUG [main.java.Application.main()] org.springframework.web.context.support.StandardServletEnvironment - Adding [applicationConfig: [classpath:/application.properties]] PropertySource with search precedence immediately lower than [applicationConfigurationProperties]
+[2016-12-13 08:59:53,643] DEBUG [main.java.Application.main()] org.springframework.web.context.support.StandardServletEnvironment - Removing [applicationConfigurationProperties] PropertySource
+[2016-12-13 08:59:53,643] DEBUG [main.java.Application.main()] org.springframework.web.context.support.StandardServletEnvironment - Removing [defaultProperties] PropertySource
+[2016-12-13 08:59:53,836] INFO [main.java.Application.main()] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$afb47974] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2016-12-13 08:59:53,853] INFO [main.java.Application.main()] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'transactionAttributeSource' of type [class org.springframework.transaction.annotation.AnnotationTransactionAttributeSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2016-12-13 08:59:53,860] INFO [main.java.Application.main()] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'transactionInterceptor' of type [class org.springframework.transaction.interceptor.TransactionInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2016-12-13 08:59:53,862] INFO [main.java.Application.main()] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.config.internalTransactionAdvisor' of type [class org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[2016-12-13 08:59:54,095] INFO [main.java.Application.main()] org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 8080 (http)
+[2016-12-13 08:59:54,217] INFO [main.java.Application.main()] org.apache.catalina.core.StandardService - Starting service Tomcat
+[2016-12-13 08:59:54,217] INFO [main.java.Application.main()] org.apache.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.0.28
+[2016-12-13 08:59:54,283] INFO [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+[2016-12-13 08:59:54,283] DEBUG [localhost-startStop-1] org.springframework.web.context.ContextLoader - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+[2016-12-13 08:59:54,283] INFO [localhost-startStop-1] org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1120 ms
+[2016-12-13 08:59:54,450] DEBUG [localhost-startStop-1] org.springframework.web.context.support.StandardServletEnvironment - Adding [servletConfigInitParams] PropertySource with lowest search precedence
+[2016-12-13 08:59:54,450] DEBUG [localhost-startStop-1] org.springframework.web.context.support.StandardServletEnvironment - Adding [servletContextInitParams] PropertySource with lowest search precedence
+[2016-12-13 08:59:54,450] DEBUG [localhost-startStop-1] org.springframework.web.context.support.StandardServletEnvironment - Adding [systemProperties] PropertySource with lowest search precedence
+[2016-12-13 08:59:54,450] DEBUG [localhost-startStop-1] org.springframework.web.context.support.StandardServletEnvironment - Adding [systemEnvironment] PropertySource with lowest search precedence
+[2016-12-13 08:59:54,451] DEBUG [localhost-startStop-1] org.springframework.web.context.support.StandardServletEnvironment - Initialized StandardServletEnvironment with PropertySources [servletConfigInitParams,servletContextInitParams,systemProperties,systemEnvironment]
+[2016-12-13 08:59:54,484] DEBUG [localhost-startStop-1] org.springframework.web.context.support.StandardServletEnvironment - Adding [servletConfigInitParams] PropertySource with lowest search precedence
+[2016-12-13 08:59:54,484] DEBUG [localhost-startStop-1] org.springframework.web.context.support.StandardServletEnvironment - Adding [servletContextInitParams] PropertySource with lowest search precedence
+[2016-12-13 08:59:54,484] DEBUG [localhost-startStop-1] org.springframework.web.context.support.StandardServletEnvironment - Adding [systemProperties] PropertySource with lowest search precedence
+[2016-12-13 08:59:54,485] DEBUG [localhost-startStop-1] org.springframework.web.context.support.StandardServletEnvironment - Adding [systemEnvironment] PropertySource with lowest search precedence
+[2016-12-13 08:59:54,485] DEBUG [localhost-startStop-1] org.springframework.web.context.support.StandardServletEnvironment - Initialized StandardServletEnvironment with PropertySources [servletConfigInitParams,servletContextInitParams,systemProperties,systemEnvironment]
+[2016-12-13 08:59:54,984] INFO [localhost-startStop-1] org.springframework.boot.context.embedded.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+[2016-12-13 08:59:54,987] INFO [localhost-startStop-1] org.springframework.boot.context.embedded.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+[2016-12-13 08:59:54,988] INFO [localhost-startStop-1] org.springframework.boot.context.embedded.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+[2016-12-13 08:59:55,007] DEBUG [main.java.Application.main()] org.springframework.web.context.support.StandardServletEnvironment - Replacing [servletContextInitParams] PropertySource with [servletContextInitParams]
+[2016-12-13 08:59:55,140] INFO [main.java.Application.main()] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@51ed4054: startup date [Tue Dec 13 08:59:53 CST 2016]; root of context hierarchy
+[2016-12-13 08:59:55,172] DEBUG [main.java.Application.main()] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Looking for request mappings in application context: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@51ed4054: startup date [Tue Dec 13 08:59:53 CST 2016]; root of context hierarchy
+[2016-12-13 08:59:55,183] INFO [main.java.Application.main()] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/rssTransform/demo/football]}" onto public void main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController.getDemoJson(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+[2016-12-13 08:59:55,184] TRACE [main.java.Application.main()] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapping name=RSSTJSONC#getDemoJson
+[2016-12-13 08:59:55,184] INFO [main.java.Application.main()] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/rssTransform/{url}]}" onto public void main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController.getJsonifiedRssUrl(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+[2016-12-13 08:59:55,184] TRACE [main.java.Application.main()] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapping name=RSSTJSONC#getJsonifiedRssUrl
+[2016-12-13 08:59:55,184] INFO [main.java.Application.main()] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/rssTransform]}" onto public void main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController.index(javax.servlet.http.HttpServletResponse)
+[2016-12-13 08:59:55,185] TRACE [main.java.Application.main()] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapping name=RSSTJSONC#index
+[2016-12-13 08:59:55,186] INFO [main.java.Application.main()] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest)
+[2016-12-13 08:59:55,187] TRACE [main.java.Application.main()] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapping name=BEC#errorHtml
+[2016-12-13 08:59:55,187] INFO [main.java.Application.main()] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+[2016-12-13 08:59:55,187] TRACE [main.java.Application.main()] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapping name=BEC#error
+[2016-12-13 08:59:55,204] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Looking for URL mappings in application context: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@51ed4054: startup date [Tue Dec 13 08:59:53 CST 2016]; root of context hierarchy
+[2016-12-13 08:59:55,205] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor': no URL paths identified
+[2016-12-13 08:59:55,205] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor': no URL paths identified
+[2016-12-13 08:59:55,205] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.context.annotation.internalRequiredAnnotationProcessor': no URL paths identified
+[2016-12-13 08:59:55,205] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.context.annotation.internalCommonAnnotationProcessor': no URL paths identified
+[2016-12-13 08:59:55,206] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.context.annotation.internalPersistenceAnnotationProcessor': no URL paths identified
+[2016-12-13 08:59:55,206] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'application': no URL paths identified
+[2016-12-13 08:59:55,206] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor': no URL paths identified
+[2016-12-13 08:59:55,206] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.context.annotation.ConfigurationClassPostProcessor.enhancedConfigurationProcessor': no URL paths identified
+[2016-12-13 08:59:55,206] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'rsstoJsonServiceImpl': no URL paths identified
+[2016-12-13 08:59:55,206] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'RSSToJSONController': no URL paths identified
+[2016-12-13 08:59:55,206] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.AutoConfigurationPackages': no URL paths identified
+[2016-12-13 08:59:55,206] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.PropertyPlaceholderAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,207] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.condition.BeanTypeRegistry': no URL paths identified
+[2016-12-13 08:59:55,207] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'propertySourcesPlaceholderConfigurer': no URL paths identified
+[2016-12-13 08:59:55,207] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration$TomcatWebSocketConfiguration': no URL paths identified
+[2016-12-13 08:59:55,207] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'websocketContainerCustomizer': no URL paths identified
+[2016-12-13 08:59:55,207] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,207] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration$EmbeddedTomcat': no URL paths identified
+[2016-12-13 08:59:55,207] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'tomcatEmbeddedServletContainerFactory': no URL paths identified
+[2016-12-13 08:59:55,207] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,208] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'embeddedServletContainerCustomizerBeanPostProcessor': no URL paths identified
+[2016-12-13 08:59:55,208] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration$DispatcherServletConfiguration': no URL paths identified
+[2016-12-13 08:59:55,208] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'dispatcherServlet': no URL paths identified
+[2016-12-13 08:59:55,208] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'dispatcherServletRegistration': no URL paths identified
+[2016-12-13 08:59:55,208] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,208] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration': no URL paths identified
+[2016-12-13 08:59:55,208] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'error': no URL paths identified
+[2016-12-13 08:59:55,208] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'beanNameViewResolver': no URL paths identified
+[2016-12-13 08:59:55,208] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,209] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'errorAttributes': no URL paths identified
+[2016-12-13 08:59:55,209] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'basicErrorController': no URL paths identified
+[2016-12-13 08:59:55,209] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$EnableWebMvcConfiguration': no URL paths identified
+[2016-12-13 08:59:55,209] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'requestMappingHandlerAdapter': no URL paths identified
+[2016-12-13 08:59:55,209] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'requestMappingHandlerMapping': no URL paths identified
+[2016-12-13 08:59:55,209] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'mvcContentNegotiationManager': no URL paths identified
+[2016-12-13 08:59:55,209] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'viewControllerHandlerMapping': no URL paths identified
+[2016-12-13 08:59:55,209] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'beanNameHandlerMapping': no URL paths identified
+[2016-12-13 08:59:55,210] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'resourceHandlerMapping': no URL paths identified
+[2016-12-13 08:59:55,210] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'mvcResourceUrlProvider': no URL paths identified
+[2016-12-13 08:59:55,210] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'defaultServletHandlerMapping': no URL paths identified
+[2016-12-13 08:59:55,210] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'mvcConversionService': no URL paths identified
+[2016-12-13 08:59:55,210] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'mvcValidator': no URL paths identified
+[2016-12-13 08:59:55,210] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'mvcPathMatcher': no URL paths identified
+[2016-12-13 08:59:55,210] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'mvcUrlPathHelper': no URL paths identified
+[2016-12-13 08:59:55,211] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'mvcUriComponentsContributor': no URL paths identified
+[2016-12-13 08:59:55,211] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'httpRequestHandlerAdapter': no URL paths identified
+[2016-12-13 08:59:55,211] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'simpleControllerHandlerAdapter': no URL paths identified
+[2016-12-13 08:59:55,211] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'handlerExceptionResolver': no URL paths identified
+[2016-12-13 08:59:55,211] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'mvcViewResolver': no URL paths identified
+[2016-12-13 08:59:55,212] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter$FaviconConfiguration': no URL paths identified
+[2016-12-13 08:59:55,212] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'faviconHandlerMapping': no URL paths identified
+[2016-12-13 08:59:55,212] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'faviconRequestHandler': no URL paths identified
+[2016-12-13 08:59:55,212] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter': no URL paths identified
+[2016-12-13 08:59:55,212] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'defaultViewResolver': no URL paths identified
+[2016-12-13 08:59:55,212] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'requestContextListener': no URL paths identified
+[2016-12-13 08:59:55,212] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'viewResolver': no URL paths identified
+[2016-12-13 08:59:55,213] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'spring.mvc.CONFIGURATION_PROPERTIES': no URL paths identified
+[2016-12-13 08:59:55,213] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'spring.resources.CONFIGURATION_PROPERTIES': no URL paths identified
+[2016-12-13 08:59:55,213] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor': no URL paths identified
+[2016-12-13 08:59:55,213] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.store': no URL paths identified
+[2016-12-13 08:59:55,213] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,213] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'hiddenHttpMethodFilter': no URL paths identified
+[2016-12-13 08:59:55,214] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.aop.AopAutoConfiguration$JdkDynamicAutoProxyConfiguration': no URL paths identified
+[2016-12-13 08:59:55,214] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.aop.config.internalAutoProxyCreator': no URL paths identified
+[2016-12-13 08:59:55,214] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.aop.AopAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,214] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.dao.PersistenceExceptionTranslationAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,214] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'persistenceExceptionTranslationPostProcessor': no URL paths identified
+[2016-12-13 08:59:55,214] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration': no URL paths identified
+[2016-12-13 08:59:55,215] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'jacksonObjectMapperBuilder': no URL paths identified
+[2016-12-13 08:59:55,215] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'http.mappers.CONFIGURATION_PROPERTIES': no URL paths identified
+[2016-12-13 08:59:55,215] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'spring.jackson.CONFIGURATION_PROPERTIES': no URL paths identified
+[2016-12-13 08:59:55,215] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration': no URL paths identified
+[2016-12-13 08:59:55,215] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'jacksonObjectMapper': no URL paths identified
+[2016-12-13 08:59:55,215] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,215] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.HttpMessageConvertersAutoConfiguration$StringHttpMessageConverterConfiguration': no URL paths identified
+[2016-12-13 08:59:55,215] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'stringHttpMessageConverter': no URL paths identified
+[2016-12-13 08:59:55,215] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'spring.http.encoding.CONFIGURATION_PROPERTIES': no URL paths identified
+[2016-12-13 08:59:55,228] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.JacksonHttpMessageConvertersConfiguration$MappingJackson2HttpMessageConverterConfiguration': no URL paths identified
+[2016-12-13 08:59:55,228] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'mappingJackson2HttpMessageConverter': no URL paths identified
+[2016-12-13 08:59:55,228] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.JacksonHttpMessageConvertersConfiguration': no URL paths identified
+[2016-12-13 08:59:55,228] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.HttpMessageConvertersAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,228] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'messageConverters': no URL paths identified
+[2016-12-13 08:59:55,228] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.data.web.config.SpringDataWebConfiguration': no URL paths identified
+[2016-12-13 08:59:55,228] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'pageableResolver': no URL paths identified
+[2016-12-13 08:59:55,229] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'sortResolver': no URL paths identified
+[2016-12-13 08:59:55,229] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.data.web.config.SpringDataJacksonConfiguration': no URL paths identified
+[2016-12-13 08:59:55,229] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'jacksonGeoModule': no URL paths identified
+[2016-12-13 08:59:55,229] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,229] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,230] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'mbeanExporter': no URL paths identified
+[2016-12-13 08:59:55,230] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'objectNamingStrategy': no URL paths identified
+[2016-12-13 08:59:55,230] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'mbeanServer': no URL paths identified
+[2016-12-13 08:59:55,230] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration': no URL paths identified
+[2016-12-13 08:59:55,230] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.transaction.config.internalTransactionAdvisor': no URL paths identified
+[2016-12-13 08:59:55,230] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'transactionAttributeSource': no URL paths identified
+[2016-12-13 08:59:55,230] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'transactionInterceptor': no URL paths identified
+[2016-12-13 08:59:55,231] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration$TransactionManagementConfiguration': no URL paths identified
+[2016-12-13 08:59:55,231] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,231] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.jta.JtaAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,231] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'spring.jta.CONFIGURATION_PROPERTIES': no URL paths identified
+[2016-12-13 08:59:55,231] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.HttpEncodingAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,231] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'characterEncodingFilter': no URL paths identified
+[2016-12-13 08:59:55,231] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,231] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'multipartConfigElement': no URL paths identified
+[2016-12-13 08:59:55,231] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'multipartResolver': no URL paths identified
+[2016-12-13 08:59:55,231] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'multipart.CONFIGURATION_PROPERTIES': no URL paths identified
+[2016-12-13 08:59:55,231] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.boot.autoconfigure.web.ServerPropertiesAutoConfiguration': no URL paths identified
+[2016-12-13 08:59:55,231] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'serverProperties': no URL paths identified
+[2016-12-13 08:59:55,232] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'autoConfigurationReport': no URL paths identified
+[2016-12-13 08:59:55,232] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'applicationEventMulticaster': no URL paths identified
+[2016-12-13 08:59:55,232] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'environment': no URL paths identified
+[2016-12-13 08:59:55,232] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'systemProperties': no URL paths identified
+[2016-12-13 08:59:55,232] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'systemEnvironment': no URL paths identified
+[2016-12-13 08:59:55,232] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importRegistry': no URL paths identified
+[2016-12-13 08:59:55,232] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'messageSource': no URL paths identified
+[2016-12-13 08:59:55,232] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'servletContext': no URL paths identified
+[2016-12-13 08:59:55,232] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'contextParameters': no URL paths identified
+[2016-12-13 08:59:55,259] DEBUG [main.java.Application.main()] org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping - Rejected bean name 'contextAttributes': no URL paths identified
+[2016-12-13 08:59:55,260] DEBUG [main.java.Application.main()] org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter - Default resource handling disabled
+[2016-12-13 08:59:55,270] DEBUG [main.java.Application.main()] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver - Looking for exception mappings: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@51ed4054: startup date [Tue Dec 13 08:59:53 CST 2016]; root of context hierarchy
+[2016-12-13 08:59:55,295] INFO [main.java.Application.main()] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[2016-12-13 08:59:55,374] INFO [main.java.Application.main()] org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+[2016-12-13 08:59:55,379] DEBUG [main.java.Application.main()] org.springframework.web.servlet.resource.ResourceUrlProvider - Looking for resource handler mappings
+[2016-12-13 08:59:55,380] DEBUG [main.java.Application.main()] org.springframework.web.servlet.resource.ResourceUrlProvider - Found resource handler mapping: URL pattern="/**/favicon.ico", locations=[class path resource [META-INF/resources/], class path resource [resources/], class path resource [static/], class path resource [public/], class path resource []], resolvers=[org.springframework.web.servlet.resource.PathResourceResolver@41e02443]
+[2016-12-13 08:59:55,408] INFO [main.java.Application.main()] org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8080 (http)
+[2016-12-13 08:59:55,409] INFO [main.java.Application.main()] main.java.Application - Started Application in 2.398 seconds (JVM running for 6.062)
+[2016-12-13 09:00:01,769] DEBUG [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Initializing servlet 'dispatcherServlet'
+[2016-12-13 09:00:01,770] INFO [http-nio-8080-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+[2016-12-13 09:00:01,770] INFO [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+[2016-12-13 09:00:01,770] DEBUG [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Using MultipartResolver [org.springframework.web.multipart.support.StandardServletMultipartResolver@8327bdd]
+[2016-12-13 09:00:01,772] DEBUG [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Unable to locate LocaleResolver with name 'localeResolver': using default [org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver@b18e904]
+[2016-12-13 09:00:01,774] DEBUG [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Unable to locate ThemeResolver with name 'themeResolver': using default [org.springframework.web.servlet.theme.FixedThemeResolver@5afe8885]
+[2016-12-13 09:00:01,777] DEBUG [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Unable to locate RequestToViewNameTranslator with name 'viewNameTranslator': using default [org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@77ddfd88]
+[2016-12-13 09:00:01,780] DEBUG [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Unable to locate FlashMapManager with name 'flashMapManager': using default [org.springframework.web.servlet.support.SessionFlashMapManager@50793d13]
+[2016-12-13 09:00:01,780] DEBUG [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Published WebApplicationContext of servlet 'dispatcherServlet' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.dispatcherServlet]
+[2016-12-13 09:00:01,780] INFO [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 10 ms
+[2016-12-13 09:00:01,780] DEBUG [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Servlet 'dispatcherServlet' configured successfully
+[2016-12-13 09:00:01,786] TRACE [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Bound request context to thread: org.apache.catalina.connector.RequestFacade@650e5678
+[2016-12-13 09:00:01,786] DEBUG [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - DispatcherServlet with name 'dispatcherServlet' processing GET request for [/rssTransform/demo/football]
+[2016-12-13 09:00:01,787] TRACE [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Testing handler map [org.springframework.web.servlet.handler.SimpleUrlHandlerMapping@9ed21b6] in DispatcherServlet with name 'dispatcherServlet'
+[2016-12-13 09:00:01,788] TRACE [http-nio-8080-exec-1] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - No handler mapping found for [/rssTransform/demo/football]
+[2016-12-13 09:00:01,788] TRACE [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Testing handler map [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping@5497480d] in DispatcherServlet with name 'dispatcherServlet'
+[2016-12-13 09:00:01,788] DEBUG [http-nio-8080-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Looking up handler method for path /rssTransform/demo/football
+[2016-12-13 09:00:01,789] TRACE [http-nio-8080-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Found 1 matching mapping(s) for [/rssTransform/demo/football] : [{[/rssTransform/demo/football]}]
+[2016-12-13 09:00:01,789] DEBUG [http-nio-8080-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Returning handler method [public void main.java.edu.wisc.my.rssToJson.controller.RSSToJSONController.getDemoJson(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)]
+[2016-12-13 09:00:01,790] TRACE [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Testing handler adapter [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter@3ca79523]
+[2016-12-13 09:00:01,790] DEBUG [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Last-Modified value for [/rssTransform/demo/football] is: -1
+[2016-12-13 09:00:01,795] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.method.annotation.RequestParamMethodArgumentResolver@2ee8f4c7] supports [interface javax.servlet.http.HttpServletRequest]
+[2016-12-13 09:00:01,795] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.method.annotation.RequestParamMapMethodArgumentResolver@5dbef3d2] supports [interface javax.servlet.http.HttpServletRequest]
+[2016-12-13 09:00:01,795] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.PathVariableMethodArgumentResolver@23799013] supports [interface javax.servlet.http.HttpServletRequest]
+[2016-12-13 09:00:01,796] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.PathVariableMapMethodArgumentResolver@4066c9ab] supports [interface javax.servlet.http.HttpServletRequest]
+[2016-12-13 09:00:01,796] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.MatrixVariableMethodArgumentResolver@1c421a95] supports [interface javax.servlet.http.HttpServletRequest]
+[2016-12-13 09:00:01,796] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.MatrixVariableMapMethodArgumentResolver@566644a6] supports [interface javax.servlet.http.HttpServletRequest]
+[2016-12-13 09:00:01,796] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor@54251a9a] supports [interface javax.servlet.http.HttpServletRequest]
+[2016-12-13 09:00:01,796] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor@4ff59f9e] supports [interface javax.servlet.http.HttpServletRequest]
+[2016-12-13 09:00:01,796] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.RequestPartMethodArgumentResolver@6d29fd2c] supports [interface javax.servlet.http.HttpServletRequest]
+[2016-12-13 09:00:01,796] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.method.annotation.RequestHeaderMethodArgumentResolver@5fac8bb1] supports [interface javax.servlet.http.HttpServletRequest]
+[2016-12-13 09:00:01,797] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.method.annotation.RequestHeaderMapMethodArgumentResolver@52e1b96b] supports [interface javax.servlet.http.HttpServletRequest]
+[2016-12-13 09:00:01,797] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.ServletCookieValueMethodArgumentResolver@61544a4f] supports [interface javax.servlet.http.HttpServletRequest]
+[2016-12-13 09:00:01,797] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.method.annotation.ExpressionValueMethodArgumentResolver@7cec113] supports [interface javax.servlet.http.HttpServletRequest]
+[2016-12-13 09:00:01,797] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.ServletRequestMethodArgumentResolver@16e5ca66] supports [interface javax.servlet.http.HttpServletRequest]
+[2016-12-13 09:00:01,798] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.method.annotation.RequestParamMethodArgumentResolver@2ee8f4c7] supports [interface javax.servlet.http.HttpServletResponse]
+[2016-12-13 09:00:01,798] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.method.annotation.RequestParamMapMethodArgumentResolver@5dbef3d2] supports [interface javax.servlet.http.HttpServletResponse]
+[2016-12-13 09:00:01,798] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.PathVariableMethodArgumentResolver@23799013] supports [interface javax.servlet.http.HttpServletResponse]
+[2016-12-13 09:00:01,798] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.PathVariableMapMethodArgumentResolver@4066c9ab] supports [interface javax.servlet.http.HttpServletResponse]
+[2016-12-13 09:00:01,798] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.MatrixVariableMethodArgumentResolver@1c421a95] supports [interface javax.servlet.http.HttpServletResponse]
+[2016-12-13 09:00:01,798] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.MatrixVariableMapMethodArgumentResolver@566644a6] supports [interface javax.servlet.http.HttpServletResponse]
+[2016-12-13 09:00:01,798] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor@54251a9a] supports [interface javax.servlet.http.HttpServletResponse]
+[2016-12-13 09:00:01,798] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor@4ff59f9e] supports [interface javax.servlet.http.HttpServletResponse]
+[2016-12-13 09:00:01,798] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.RequestPartMethodArgumentResolver@6d29fd2c] supports [interface javax.servlet.http.HttpServletResponse]
+[2016-12-13 09:00:01,798] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.method.annotation.RequestHeaderMethodArgumentResolver@5fac8bb1] supports [interface javax.servlet.http.HttpServletResponse]
+[2016-12-13 09:00:01,798] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.method.annotation.RequestHeaderMapMethodArgumentResolver@52e1b96b] supports [interface javax.servlet.http.HttpServletResponse]
+[2016-12-13 09:00:01,799] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.ServletCookieValueMethodArgumentResolver@61544a4f] supports [interface javax.servlet.http.HttpServletResponse]
+[2016-12-13 09:00:01,799] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.method.annotation.ExpressionValueMethodArgumentResolver@7cec113] supports [interface javax.servlet.http.HttpServletResponse]
+[2016-12-13 09:00:01,799] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.ServletRequestMethodArgumentResolver@16e5ca66] supports [interface javax.servlet.http.HttpServletResponse]
+[2016-12-13 09:00:01,799] TRACE [http-nio-8080-exec-1] org.springframework.web.method.support.HandlerMethodArgumentResolverComposite - Testing if argument resolver [org.springframework.web.servlet.mvc.method.annotation.ServletResponseMethodArgumentResolver@484afa48] supports [interface javax.servlet.http.HttpServletResponse]
+[2016-12-13 09:00:01,799] TRACE [http-nio-8080-exec-1] org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod - Invoking [RSSToJSONController.getDemoJson] method with arguments [org.apache.catalina.connector.RequestFacade@650e5678, org.apache.catalina.connector.ResponseFacade@3275b20c]
+[2016-12-13 09:00:02,005] TRACE [http-nio-8080-exec-1] org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod - Method [getDemoJson] returned [null]
+[2016-12-13 09:00:02,005] DEBUG [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'dispatcherServlet': assuming HandlerAdapter completed request handling
+[2016-12-13 09:00:02,005] TRACE [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Cleared thread-bound request context: org.apache.catalina.connector.RequestFacade@650e5678
+[2016-12-13 09:00:02,005] DEBUG [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet - Successfully completed request
+[2016-12-13 09:00:02,018] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Bound request context to thread: org.apache.catalina.connector.RequestFacade@650e5678
+[2016-12-13 09:00:02,019] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - DispatcherServlet with name 'dispatcherServlet' processing GET request for [/favicon.ico]
+[2016-12-13 09:00:02,019] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Testing handler map [org.springframework.web.servlet.handler.SimpleUrlHandlerMapping@9ed21b6] in DispatcherServlet with name 'dispatcherServlet'
+[2016-12-13 09:00:02,024] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Matching patterns for request [/favicon.ico] are [/**/favicon.ico]
+[2016-12-13 09:00:02,028] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - URI Template variables for request [/favicon.ico] are {}
+[2016-12-13 09:00:02,029] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapping [/favicon.ico] to HandlerExecutionChain with handler [ResourceHttpRequestHandler [locations=[class path resource [META-INF/resources/], class path resource [resources/], class path resource [static/], class path resource [public/], class path resource []], resolvers=[org.springframework.web.servlet.resource.PathResourceResolver@41e02443]]] and 1 interceptor
+[2016-12-13 09:00:02,030] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Testing handler adapter [org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter@3ca79523]
+[2016-12-13 09:00:02,030] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Testing handler adapter [org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter@429800ef]
+[2016-12-13 09:00:02,030] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Last-Modified value for [/favicon.ico] is: -1
+[2016-12-13 09:00:02,031] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.resource.ResourceHttpRequestHandler - Applying "invalid path" checks to path: favicon.ico
+[2016-12-13 09:00:02,033] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.resource.PathResourceResolver - Resolving resource: requestPath="favicon.ico"
+[2016-12-13 09:00:02,033] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.resource.PathResourceResolver - Checking location: class path resource [META-INF/resources/]
+[2016-12-13 09:00:02,034] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.resource.PathResourceResolver - No match for location: class path resource [META-INF/resources/]
+[2016-12-13 09:00:02,034] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.resource.PathResourceResolver - Checking location: class path resource [resources/]
+[2016-12-13 09:00:02,035] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.resource.PathResourceResolver - No match for location: class path resource [resources/]
+[2016-12-13 09:00:02,035] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.resource.PathResourceResolver - Checking location: class path resource [static/]
+[2016-12-13 09:00:02,036] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.resource.PathResourceResolver - No match for location: class path resource [static/]
+[2016-12-13 09:00:02,036] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.resource.PathResourceResolver - Checking location: class path resource [public/]
+[2016-12-13 09:00:02,036] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.resource.PathResourceResolver - No match for location: class path resource [public/]
+[2016-12-13 09:00:02,036] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.resource.PathResourceResolver - Checking location: class path resource []
+[2016-12-13 09:00:02,037] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.resource.PathResourceResolver - Found match: class path resource [favicon.ico]
+[2016-12-13 09:00:02,046] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.resource.ResourceHttpRequestHandler - No media type found for class path resource [favicon.ico] - not sending a content-type header
+[2016-12-13 09:00:02,050] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.resource.ResourceHttpRequestHandler - Resource not modified - returning 304
+[2016-12-13 09:00:02,050] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'dispatcherServlet': assuming HandlerAdapter completed request handling
+[2016-12-13 09:00:02,050] TRACE [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Cleared thread-bound request context: org.apache.catalina.connector.RequestFacade@650e5678
+[2016-12-13 09:00:02,051] DEBUG [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet - Successfully completed request
+[2016-12-13 09:11:21,471] INFO [Thread-1] org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext - Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@51ed4054: startup date [Tue Dec 13 08:59:53 CST 2016]; root of context hierarchy
+[2016-12-13 09:11:21,479] INFO [Thread-1] org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
