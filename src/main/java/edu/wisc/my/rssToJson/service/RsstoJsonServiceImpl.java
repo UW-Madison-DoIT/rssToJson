@@ -83,7 +83,8 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 						rssItem.setLink(currentValue);
 					}
 					if (currentElement.equals(DESCRIPTION)) {
-						rssItem.setDescription(currentValue);
+						String descriptionSoFar = rssItem.getDescription() + " " + currentValue;
+						rssItem.setDescription(descriptionSoFar);
 					}
 					currentValue = "";
 					rssItem.setChannel(isChannel);

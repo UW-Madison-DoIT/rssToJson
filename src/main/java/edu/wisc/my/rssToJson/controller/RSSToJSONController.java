@@ -66,7 +66,7 @@ public class RSSToJSONController {
 	        }
 	    }
 	    
-	  @RequestMapping(value="/rssTransform/demo/football")
+	  @RequestMapping(value="/rssTransform/demo/feed")
 	  public @ResponseBody void getDemoJson(HttpServletRequest request, HttpServletResponse response){
            String paramaterizedURL = env.getRequiredProperty("demo.url");
 	       if(!StringUtils.isEmpty(paramaterizedURL)){
@@ -100,6 +100,7 @@ public class RSSToJSONController {
 		
 		try {
 			if (isJSONValid(returnBody)) {
+				logger.trace(returnBody);
 				response.getWriter().write(returnBody);
 				response.setContentType("application/json");
 				response.setStatus(HttpServletResponse.SC_OK);

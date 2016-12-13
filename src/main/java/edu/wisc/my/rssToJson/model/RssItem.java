@@ -29,7 +29,7 @@ public class RssItem {
 		this.link = cleanString(link);
 	}
 	public String getDescription() {
-		return description;
+		return description !=null ? description : "";
 	}
 	public void setDescription(String description) {
 		this.description = cleanString(description);
@@ -66,7 +66,8 @@ public class RssItem {
 
     	}
     	String cleaned = cleanedItem.toString().trim();
-    	cleaned.replaceAll("null ", "");
+    	
+    	cleaned.replaceAll("null", "");
     	cleaned.replaceAll(":\"\\s", ":\"");
 
     	return cleaned;
