@@ -33,7 +33,6 @@ public class RSSToJSONController {
 	  protected final Logger logger = LoggerFactory.getLogger(getClass());
 	  private IRssToJsonService rssToJsonService;
 	  private String ERROR_MESSAGE = "Your rss feed may be unavailable at this time. Please try again later.";
-	  private int errStep = 0;
 	  private Environment env;
 	  
 	  

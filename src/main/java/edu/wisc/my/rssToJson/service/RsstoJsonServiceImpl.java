@@ -17,6 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import main.java.edu.wisc.my.rssToJson.model.RssItem;
+import main.java.edu.wisc.my.rssToJson.model.RssItemDetail;
 
 @Service
 public class RsstoJsonServiceImpl  implements IRssToJsonService {
@@ -45,7 +46,8 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 			
 				String currentValue = "";
 				final ObjectMapper om = new ObjectMapper();
-				RssItem rssItem = new RssItem();
+				RssItem rssItem;
+				RssItemDetail rssItemDetail = new RssItemDetail();
 				StringBuffer output = new StringBuffer("");
 				boolean isChannel = true;
 
@@ -56,14 +58,20 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 					
 					if (qName.equals(ITEM)) {
 						try {
-							output.append(om.writeValueAsString(rssItem));
+							if(isChannel){
+								output.append(om.writeValueAsString(rssItemDetail));
+								rssItem = new RssItem();
+							}else{
+							    output.append(om.writeValueAsString(rssItem));
+							}
 						} catch (JsonProcessingException e) {
 							
 						}
 						
 						currentValue = "";
 						isChannel = false;
-						rssItem = new RssItem();
+						rssItem.setItem(new RssItemDetail());
+						rssItemDetail = rssItem.getItem();
 					}
 
 					currentElement = qName;
@@ -77,17 +85,17 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 				public void endElement(String uri, String localName, String qName) throws SAXException {
 
 					if (currentElement.equals(TITLE)) {
-						rssItem.setTitle(currentValue);
+						rssItemDetail.setTitle(currentValue);
 					}
 					if (currentElement.equals(LINK)) {
-						rssItem.setLink(currentValue);
+						rssItemDetail.setLink(currentValue);
 					}
 					if (currentElement.equals(DESCRIPTION)) {
-						String descriptionSoFar = rssItem.getDescription() + " " + currentValue;
-						rssItem.setDescription(descriptionSoFar);
+						String descriptionSoFar = rssItemDetail.getDescription() + " " + currentValue;
+						rssItemDetail.setDescription(descriptionSoFar);
 					}
 					currentValue = "";
-					rssItem.setChannel(isChannel);
+					rssItemDetail.setChannel(isChannel);
 				}
 
 				public String getJson() {
