@@ -9,6 +9,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.2.7.RELEASE</version>
     </parent>
+    <packaging>war</packaging>
 
     <scm>
         <connection>scm:git:git://github.com:UW-Madison-DoIT/rssToJson.git</connection>
@@ -93,6 +94,11 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>2.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>
