@@ -1,11 +1,7 @@
 
 package main.java.edu.wisc.my.rssToJson.service;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -17,48 +13,24 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import main.java.edu.wisc.my.rssToJson.model.RssItem;
+import main.java.edu.wisc.my.rssToJson.model.RssItemDetail;
 
 @Service
 public class RsstoJsonServiceImpl  implements IRssToJsonService {
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
-	private String retVal;
-
 	public RsstoJsonServiceImpl() {
 
 	}
 
-	private InputStream getInputStream(String url) throws IOException {
-
-	try {
-	       String webServiceURL=url;
-	        URL geoLocationDetailXMLURL = new URL(webServiceURL);
-	        HttpURLConnection geoLocationDetailXMLURLConnection = (HttpURLConnection)geoLocationDetailXMLURL.openConnection();
-	        InputStream in = new BufferedInputStream(geoLocationDetailXMLURLConnection.getInputStream());
-	        return in;
-	}catch(Exception e){
-		return null;
-	}
-	}
-	
+		
 	@Override
-	public String jsonifiedRssUrl(String url){
+	public String getJsonFromURL(String url, InputStream in) {
+        String retVal = "";
 		try {
-			return jsonifiedRssUrl(url, getInputStream(url));
-		} catch (Exception e) {
-			return null;
-		}
-	}
-	
-	@SuppressWarnings("finally")
-	public String jsonifiedRssUrl(String url, InputStream in) {
-		logger.warn("IN SERVICE");
-		System.out.println("SERVICE METHOD");
-		try {
-
-			// 1. Parse the url
 			SAXParserFactory factoryS = SAXParserFactory.newInstance();
 			SAXParser saxParser = null;
 			saxParser = factoryS.newSAXParser();
@@ -70,57 +42,36 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 				private static final String DESCRIPTION = "description";
 				private static final String LINK = "link";
 				
-				
 				String currentElement;
 			
 				String currentValue = "";
 				final ObjectMapper om = new ObjectMapper();
-				RssItem rssItem = new RssItem();
+				RssItem rssItem;
+				RssItemDetail rssItemDetail = new RssItemDetail();
 				StringBuffer output = new StringBuffer("");
 				boolean isChannel = true;
-
-				private String stringCleaner(String jsonItem) {
-
-					char backslash = "\\".toCharArray()[0];
-					char[] formatting = jsonItem.toCharArray();
-					StringBuffer cleanedItem = new StringBuffer("");
-					boolean formatCleaner = false;
-					for (char c : formatting) {
-
-						if (c == backslash && !formatCleaner) {
-							formatCleaner = true;
-						}
-
-						if (!formatCleaner) {
-							cleanedItem.append(c);
-						} else {
-							if (c != backslash) {
-								formatCleaner = false;
-							}
-						}
-
-					}
-					String cleaned = cleanedItem.toString().trim();
-					cleaned.replaceAll("null ", "");
-					return cleaned;
-				}
 
 				public void startElement(String uri, String localName, String qName, Attributes attributes)
 						throws SAXException {
 
+					logger.trace(qName);
+					
 					if (qName.equals(ITEM)) {
-
 						try {
-							String cleanedString = stringCleaner(om.writeValueAsString(rssItem));
-							output.append(cleanedString);
-						} catch (Exception e) {
-							// ContinueProcessing
+							if(isChannel){
+								output.append(om.writeValueAsString(rssItemDetail));
+								rssItem = new RssItem();
+							}else{
+							    output.append(om.writeValueAsString(rssItem));
+							}
+						} catch (JsonProcessingException e) {
+							
 						}
-
+						
 						currentValue = "";
 						isChannel = false;
-						rssItem = new RssItem();
-
+						rssItem.setItem(new RssItemDetail());
+						rssItemDetail = rssItem.getItem();
 					}
 
 					currentElement = qName;
@@ -134,18 +85,17 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 				public void endElement(String uri, String localName, String qName) throws SAXException {
 
 					if (currentElement.equals(TITLE)) {
-						rssItem.setTitle(currentValue);
+						rssItemDetail.setTitle(currentValue);
 					}
-
 					if (currentElement.equals(LINK)) {
-						rssItem.setLink(currentValue);
+						rssItemDetail.setLink(currentValue);
 					}
-
 					if (currentElement.equals(DESCRIPTION)) {
-						rssItem.setDescription(currentValue);
+						String descriptionSoFar = rssItemDetail.getDescription() + " " + currentValue;
+						rssItemDetail.setDescription(descriptionSoFar);
 					}
 					currentValue = "";
-					rssItem.setChannel(isChannel);
+					rssItemDetail.setChannel(isChannel);
 				}
 
 				public String getJson() {
@@ -154,11 +104,12 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 			}
 
 			jsonHandler jh = new jsonHandler();
-			saxParser.parse(url, jh);
-			retVal = jh.getJson();
+			saxParser.parse(in, jh);
+			retVal =  jh.getJson();
 
-		} finally {
-			return retVal;
+		}catch(Exception e){
+			logger.error("THIS IS YOUR ERROR _ " + e.getMessage());
 		}
+	        return retVal;
 	}
 }
