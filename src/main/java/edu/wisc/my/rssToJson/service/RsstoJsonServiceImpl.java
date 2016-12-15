@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import main.java.edu.wisc.my.rssToJson.model.RssItem;
 import main.java.edu.wisc.my.rssToJson.model.RssItemDetail;
+import main.java.edu.wisc.my.rssToJson.model.RssItemParent;
 
 @Service
 public class RsstoJsonServiceImpl  implements IRssToJsonService {
@@ -26,7 +27,7 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 
 	}
 
-		
+
 	@Override
 	public String getJsonFromURL(String url, InputStream in) {
         String retVal = "";
@@ -41,9 +42,10 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 				private static final String TITLE = "title";
 				private static final String DESCRIPTION = "description";
 				private static final String LINK = "link";
-				
+
 				String currentElement;
-			
+
+				RssItemParent parent = new RssItemParent();
 				String currentValue = "";
 				final ObjectMapper om = new ObjectMapper();
 				RssItem rssItem;
@@ -55,21 +57,25 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 						throws SAXException {
 
 					logger.trace(qName);
-					
+
 					if (qName.equals(ITEM)) {
-						try {
-							if(isChannel){
-								output.append(om.writeValueAsString(rssItemDetail));
-								rssItem = new RssItem();
-							}else{
-							    output.append(om.writeValueAsString(rssItem));
+						if(isChannel){
+							parent.setFeed(rssItemDetail);
+							try {
+								output.append(om.writeValueAsString(parent));
+							} catch (JsonProcessingException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
 							}
-						} catch (JsonProcessingException e) {
-							
+							rssItem = new RssItem();
+						}else{
+						    parent.addItem(rssItem);
+							//output.append(om.writeValueAsString(rssItem));
 						}
-						
+
 						currentValue = "";
 						isChannel = false;
+						rssItem = new RssItem();
 						rssItem.setItem(new RssItemDetail());
 						rssItemDetail = rssItem.getItem();
 					}
@@ -99,7 +105,15 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 				}
 
 				public String getJson() {
-					return this.output.toString();
+					    String retVal;
+						try {
+							retVal = om.writeValueAsString(parent);
+							return retVal;
+						} catch (JsonProcessingException e) {
+							logger.error(e.getMessage());
+							retVal = "}}>< invalid json.";
+						}
+						return retVal;
 				}
 			}
 
