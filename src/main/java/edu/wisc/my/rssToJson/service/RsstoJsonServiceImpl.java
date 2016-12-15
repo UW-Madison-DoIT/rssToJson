@@ -50,7 +50,6 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 				final ObjectMapper om = new ObjectMapper();
 				RssItem rssItem;
 				RssItemDetail rssItemDetail = new RssItemDetail();
-				StringBuffer output = new StringBuffer("");
 				boolean isChannel = true;
 
 				public void startElement(String uri, String localName, String qName, Attributes attributes)
@@ -61,16 +60,9 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 					if (qName.equals(ITEM)) {
 						if(isChannel){
 							parent.setFeed(rssItemDetail);
-							try {
-								output.append(om.writeValueAsString(parent));
-							} catch (JsonProcessingException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
 							rssItem = new RssItem();
 						}else{
 						    parent.addItem(rssItem);
-							//output.append(om.writeValueAsString(rssItem));
 						}
 
 						currentValue = "";
