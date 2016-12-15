@@ -12,7 +12,7 @@ import org.springframework.context.annotation.PropertySource;
 @SpringBootApplication
 @ComponentScan
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
-@PropertySource({"classpath:application.properties"})
+@PropertySource({"classpath:application.properties","classpath:endpoint.properties"})
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
