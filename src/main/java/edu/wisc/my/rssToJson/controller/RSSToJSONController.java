@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -27,31 +28,35 @@ import main.java.edu.wisc.my.rssToJson.service.IRssToJsonService;
 
 @Controller
 public class RSSToJSONController {
-	
 
-	
+
+
 	  protected final Logger logger = LoggerFactory.getLogger(getClass());
 	  private IRssToJsonService rssToJsonService;
 	  private String ERROR_MESSAGE = "Your rss feed may be unavailable at this time. Please try again later.";
 	  private Environment env;
-	  
-	  
-	  
+
+
+
 	  @Autowired
 	    public void setEnv(Environment env) { this.env = env; }
-	  
+
 	  @Autowired
 	    public void setRSSToJSONService(IRssToJsonService rssToJsonService){
 	        this.rssToJsonService = rssToJsonService;
 	    }
-	  
-	  /**
-	     * Status page
-	     * @param response the thing to write to
-	     */
+
+	    @RequestMapping("/rssTransform/prop/{url}")
+      public @ResponseBody void getParamaterizedUrl(HttpServletRequest request, HttpServletResponse response, @PathVariable String url){
+				String paramaterizedURL = env.getRequiredProperty(url);
+							if(!StringUtils.isEmpty(paramaterizedURL)){
+									getJsonifiedRssUrl(request, response, paramaterizedURL);
+							}
+			}
+
 	    @RequestMapping("/rssTransform")
 	    public @ResponseBody void index(HttpServletResponse response){
-	        
+
 	    	try {
 	          JSONObject responseObj = new JSONObject();
 	          responseObj.put("status", "up");
@@ -64,23 +69,23 @@ public class RSSToJSONController {
 	            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 	        }
 	    }
-	    
+
 	  @RequestMapping(value="/rssTransform/demo/feed")
 	  public @ResponseBody void getDemoJson(HttpServletRequest request, HttpServletResponse response){
            String paramaterizedURL = env.getRequiredProperty("demo.url");
 	       if(!StringUtils.isEmpty(paramaterizedURL)){
 	    	   getJsonifiedRssUrl(request, response, paramaterizedURL);
 	       }
-	       
+
 	  }
-	  
+
 	  private String getErrorString(){
 		  return ERROR_MESSAGE;
 	  }
-	  
+
 	  @RequestMapping(value="/rssTransform/{url}")
 	  public @ResponseBody void getJsonifiedRssUrl(HttpServletRequest request, HttpServletResponse response, @PathVariable String url){
-	   
+
 		String returnBody = "";
 		try {
 			URL rssUrl = new URL(url);
@@ -88,15 +93,15 @@ public class RSSToJSONController {
 					.openConnection();
 			InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 			returnBody = getRssToJsonService().getJsonFromURL(url, in);
-			
-		
+
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.warn(e.getMessage());
 			returnBody = getErrorString();
 		}
 		logger.trace("RETURN " + returnBody);
-		
+
 		try {
 			if (isJSONValid(returnBody)) {
 				logger.trace(returnBody);
@@ -115,13 +120,13 @@ public class RSSToJSONController {
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}
 	}
-	    
+
 	  private IRssToJsonService getRssToJsonService() {
 		return this.rssToJsonService;
 	}
 
 	private boolean isJSONValid(String test) {
-	      
+
 		try {
 	          new JSONObject(test);
 	      } catch (JSONException ex) {
@@ -130,10 +135,10 @@ public class RSSToJSONController {
 	          } catch (JSONException ex1) {
 	              return false;
 	          }
-	      } 
+	      }
 	      return true;
 	  }
-	  
-	  
+
+
 
 }
