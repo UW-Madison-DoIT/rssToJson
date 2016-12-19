@@ -2,4 +2,4 @@
 
 This simple REST service will process an XML based rss feed and return it as JSON. 
 
-/rssTransform/{url}
+See [documentation website](http://uw-madison-doit.github.io/rssToJson/).
