@@ -1,0 +1,81 @@
+# rssToJson
+
+Converts RSS feeds to `JSON` (suitable for rendering with e.g. the RSS [widget type][angularjs-portal widgets docs] in [AngularJS-portal][]).
+
+Intended for deployment as a "microservice".
+
+## Configuration
+
+In `endpoint.properties`
+
+declare key-value pairs
+
+where the key is an arbitrary String identifying the feed
+
+and the value is the URL of the associated RSS feed.
+
+## Usage
+
+`/{webapp-name}/rssTransform/prop/{key}`
+
+as in
+
+```xml
+  <portlet-definition>
+    <portlet-preference>
+      <name>widgetType</name>
+      <value>rss</value>
+    </portlet-preference>
+    <portlet-preference>
+      <name>widgetURL</name>
+      <value>/rss-to-json/rssTransform/prop/campus-news</value>
+    </portlet-preference>
+    <portlet-preference>
+      <name>widgetConfig</name>
+      <value><![CDATA[{ "lim" : 4 }]]></value>
+    </portlet-preference>
+    <portlet-preference>
+      <name>content</name>
+      <readOnly>false</readOnly>
+      <value><![CDATA[
+        <p>
+          <a href="http://xkcd.com/"
+            target="_blank"
+            rel="noopener noreferrer">XKCD</a>
+        </p>.]]>
+      </value>
+    </portlet-preference>
+  </portlet-definition>
+```
+
+returns something like
+
+```json
+{
+  "status":"ok",
+  "feed":{
+    "title":"Campus news – News",
+    "link":"http://news.wisc.edu",
+    "description":""},
+  "items":[
+    {"item":{
+      "title":"Students make finals of ‘Team Ninja Warrior’",
+      "link":"http://www.jsonline.com/story/life/green-sheet/2016/12/18/hartland-native-uw-madison-students-compete-team-ninja-warrior/95516194/",
+      "description":"Three UW students – \"Science Ninja\" Zach Kemmerer, pole vaulter Taylor Amann and \"R.A. Ninja\" Andrew Philibeck – made it to the finals of \"Team Ninja Warrior College Madness,\" airing Dec. 20."}
+    },
+    {"item":{
+      "title":"Astronaut Lovell tells grads: ‘We are all the crew of spaceship Earth’",
+      "link":"http://news.wisc.edu/astronaut-lovell-tells-grads-we-are-all-the-crew-of-spaceship-earth/",
+      "description":"More than 1,000 students celebrated winter commencement Sunday at the Kohl Center. Astronaut James Lovell delivered the charge to the graduates."}
+    },
+    {"item":{
+      "title":"Astronaut James Lovell’s commencement speech",
+      "link":"http://news.wisc.edu/astronaut-james-lovells-commencement-speech/",
+      "description":"Read the complete text of Capt. James A. Lovell's commencement address to 2016 winter graduates."}
+    }
+  ]
+}
+```
+
+[AngularJS-portal]: https://github.com/UW-Madison-DoIT/angularjs-portal
+[angularjs-portal widgets docs]: http://uw-madison-doit.github.io/angularjs-portal/latest/#/md/widgets
