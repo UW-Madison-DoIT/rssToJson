@@ -4,6 +4,10 @@ Converts RSS feeds to `JSON` (suitable for rendering with e.g. the RSS [widget t
 
 Intended for deployment as a "microservice".
 
+## Confidence-inspiring badges
+
+[![Dependency Status](https://dependencyci.com/github/UW-Madison-DoIT/rssToJson/badge)](https://dependencyci.com/github/UW-Madison-DoIT/rssToJson)
+
 ## Configuration
 
 In `endpoint.properties`
