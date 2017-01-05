@@ -16,7 +16,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import main.java.edu.wisc.my.rssToJson.model.RssItem;
+
 import main.java.edu.wisc.my.rssToJson.model.RssItemDetail;
 import main.java.edu.wisc.my.rssToJson.model.RssItemParent;
 
@@ -48,7 +48,6 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 				RssItemParent parent = new RssItemParent();
 				String currentValue = "";
 				final ObjectMapper om = new ObjectMapper();
-				RssItem rssItem;
 				RssItemDetail rssItemDetail = new RssItemDetail();
 				boolean isChannel = true;
 
@@ -60,16 +59,14 @@ public class RsstoJsonServiceImpl  implements IRssToJsonService {
 					if (qName.equals(ITEM)) {
 						if(isChannel){
 							parent.setFeed(rssItemDetail);
-							rssItem = new RssItem();
+							
 						}else{
-						    parent.addItem(rssItem);
+						    parent.addItem(rssItemDetail);
 						}
 
 						currentValue = "";
 						isChannel = false;
-						rssItem = new RssItem();
-						rssItem.setItem(new RssItemDetail());
-						rssItemDetail = rssItem.getItem();
+						rssItemDetail = new RssItemDetail();
 					}
 
 					currentElement = qName;

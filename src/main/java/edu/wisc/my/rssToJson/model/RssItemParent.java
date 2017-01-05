@@ -6,7 +6,7 @@ public class RssItemParent {
 
 	private String status = "ok";
 	private RssItemDetail feed;
-	private ArrayList<RssItem> items = new ArrayList<RssItem>();
+	private ArrayList<RssItemDetail> items = new ArrayList<RssItemDetail>();
 
 	public String getStatus() {
 		return status;
@@ -20,7 +20,7 @@ public class RssItemParent {
 		this.status = status;
 	}
 
-	public ArrayList<RssItem> getItems() {
+	public ArrayList<RssItemDetail> getItems() {
 		return items;
 	}
 
@@ -29,11 +29,11 @@ public class RssItemParent {
 	}
 
 
-	public void setItems(ArrayList<RssItem> items) {
+	public void setItems(ArrayList<RssItemDetail> items) {
 		this.items = items;
 	}
 
-	public void addItem(RssItem item){
+	public void addItem(RssItemDetail item){
 		items.add(item);
 	}
 
