@@ -4,6 +4,6 @@ import com.rometools.rome.feed.synd.SyndFeed;
 
 public interface RssToJsonDao{
     
-    public SyndFeed getSyndFeed(String feedEndpoint);
+    public SyndFeed getRssFeed(String feedEndpoint);
     
 }
