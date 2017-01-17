@@ -29,7 +29,7 @@
 <!--                                                                -->
 <configuration scan="true" scanPeriod="30 seconds">
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    <contextName>storage</contextName>
+    <contextName>rss-to-json</contextName>
 
   <!-- 
    | Specify a local property that sets up the logging directory
@@ -49,11 +49,11 @@
     </rollingPolicy>
   </appender>
 
-  <root level="INFO">
+  <root level="ERROR">
       <appender-ref ref="LOG"/>
   </root>
+  <logger name="edu.wisc" additivity="false" level="WARN">
+        <appender-ref ref="LOG"/>
+    </logger>
 
-  <logger name="edu.wisc" additivity="false" level="TRACE">
-      <appender-ref ref="LOG"/>
-  </logger>
 </configuration>
