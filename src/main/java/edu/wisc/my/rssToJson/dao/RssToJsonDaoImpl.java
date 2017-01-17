@@ -9,6 +9,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Repository;
@@ -18,7 +19,7 @@ import com.rometools.rome.io.SyndFeedInput;
 
 @PropertySource("classpath:endpoint.properties")
 @Repository
-public class RssToJsonImpl implements RssToJsonDao{
+public class RssToJsonDaoImpl implements RssToJsonDao{
     
     protected final Logger logger = LoggerFactory.getLogger(getClass());
     private Environment env;
@@ -32,8 +33,9 @@ public class RssToJsonImpl implements RssToJsonDao{
     }
 
     @Override
-    public SyndFeed getSyndFeed(String feedEndpoint) {
-        
+    @Cacheable(cacheNames="feeds", sync=true)
+    public SyndFeed getRssFeed(String feedEndpoint) {
+        logger.info("Fetching feed for {} ", feedEndpoint);
         //see if property file has corresponding url for requested endpoint
         String endpointURL = env.getProperty(feedEndpoint);
         if (endpointURL == null){
