@@ -12,9 +12,10 @@
     <packaging>war</packaging>
 
     <scm>
-        <connection>scm:git:git://github.com:UW-Madison-DoIT/rssToJson.git</connection>
+        <connection>scm:git:git@github.com:UW-Madison-DoIT/rssToJson.git</connection>
         <developerConnection>scm:git:git@github.com:UW-Madison-DoIT/rssToJson.git</developerConnection>
         <url>https://github.com/UW-Madison-DoIT/rssToJson</url>
+        <tag>HEAD</tag>
     </scm>
     <distributionManagement>
         <snapshotRepository>
