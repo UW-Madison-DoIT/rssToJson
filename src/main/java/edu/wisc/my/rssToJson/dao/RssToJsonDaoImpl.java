@@ -2,6 +2,7 @@ package edu.wisc.my.rssToJson.dao;
 
 import java.io.InputStreamReader;
 
+import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -47,6 +48,7 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
         try{
             HttpClient client = HttpClientBuilder.create().build();
             HttpGet request = new HttpGet(endpointURL);
+            request.setHeader(HttpHeaders.USER_AGENT, "rss-to-json service");
             HttpResponse response = client.execute(request);
             SyndFeedInput input = new SyndFeedInput();
             feed = input.build(new InputStreamReader(response.getEntity().getContent()));
