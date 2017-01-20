@@ -48,7 +48,7 @@ public class RsstoJsonServiceImpl implements RssToJsonService {
             entries.put(feedItem);
         }
         jsonToReturn.put("items", entries);
-        jsonToReturn.put("status", HttpStatus.OK);
+        jsonToReturn.put("status", "ok");
         return jsonToReturn;
     }
 }
