@@ -1,0 +1,4 @@
+{"dataSources":[
+{"appName":"demo", "attributeName":"uid", "dataSourceLocation":"sampleIds.csv", "dataSourceType":"CSV"},
+{"appName":"whitefish", "attributeName":"whitefish", "dataSourceLocation":"nonexistent.json", "dataSourceType":"JSON"}
+]}
