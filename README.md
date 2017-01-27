@@ -4,8 +4,7 @@ A service to provide a customized URL based on the identity of the user.
 In the resources folder, a file called dataSources.json controls the mechanics of this service.
 
   {"dataSources":[
-  {"appName":"demo", "attributeName":"uid", "dataSourceLocation":"sampleIds.csv", "dataSourceType":"CSV"},
-  {"appName":"whitefish", "attributeName":"whitefish", "dataSourceLocation":"nonexistent.json", "dataSourceType":"JSON"}
+  {"appName":"demo", "attributeName":"uid", "dataSourceLocation":"sampleIds.csv", "dataSourceType":"CSV"}
   ]}
 
 * appName: A parameter passed into the requestMapping, informing the service which application is calling.
