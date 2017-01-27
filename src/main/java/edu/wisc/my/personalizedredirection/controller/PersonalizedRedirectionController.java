@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import edu.wisc.my.personalizedredirection.dao.UrlDataSource;
 import edu.wisc.my.personalizedredirection.exception.PersonalizedRedirectionException;
@@ -62,7 +63,7 @@ public class PersonalizedRedirectionController {
 	 * @param appName
 	 */
 	@RequestMapping(value = "/{appName}", method = RequestMethod.GET)
-	public @ResponseBody String getUrl(HttpServletRequest request, HttpServletResponse response,
+	public @ResponseBody void getUrl(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable String appName) {
 		try {
 			UrlDataSource dataSource = sourceDataLocatorService.getUrlDataSource(appName);
@@ -78,14 +79,18 @@ public class PersonalizedRedirectionController {
 			} catch (PersonalizedRedirectionException e) {
 				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			}
-           
-			return "redirect:" + url;
+			
+			if(url == null || url.length()!=0) {
+				response.sendRedirect(url);
+			}else{
+				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			}
+
 		} catch (Exception e) {
 			logger.error("Issues happened while trying to generate custom link", e);
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}
-		
-		    return "redirect:/error";
+
 	}
 
 	public ISourceDataLocatorService getSourceDataLocatorService() {
