@@ -17,9 +17,9 @@ import edu.wisc.my.rssToJson.dao.RssToJsonDao;
 @Service
 public class RsstoJsonServiceImpl implements RssToJsonService {
     protected final Logger logger = LoggerFactory.getLogger(getClass());
-    
+
     private RssToJsonDao rssToJsonDao;
-        
+
     @Autowired
     void setRssToJsonDao(RssToJsonDao rssToJsonDao){
         this.rssToJsonDao = rssToJsonDao;
@@ -33,11 +33,12 @@ public class RsstoJsonServiceImpl implements RssToJsonService {
             return null;
         }
         JSONObject jsonToReturn = new JSONObject();
-        
+
         JSONObject feedInfo = new JSONObject();
         feedInfo.put("title", feed.getTitle());
         feedInfo.put("link", feed.getLink());
         feedInfo.put("description", feed.getDescription());
+        feedInfo.put("pubDate", feed.getPublishedDate());
         jsonToReturn.put("feed", feedInfo);
         JSONArray entries = new JSONArray();
         for(SyndEntry entry : feed.getEntries()){
@@ -45,6 +46,7 @@ public class RsstoJsonServiceImpl implements RssToJsonService {
             feedItem.put("title", entry.getTitle());
             feedItem.put("link", entry.getLink());
             feedItem.put("description", entry.getDescription().getValue());
+            feedItem.put("pubDate", entry.getPublishedDate());
             entries.put(feedItem);
         }
         jsonToReturn.put("items", entries);
