@@ -6,7 +6,7 @@ The [Apereo Welcoming Policy][] applies. Cf. [CODE_OF_CONDUCT.md][]
 
 ## Contributor License Agreements
 
-As a sub-project of an [incubating, aspiring Apereo product][AngularJS-portal website on incubating], `KeyValueStore` requires contributors and contributions to comply with [Apereo inbound intellectual property licensing practices][].
+As a sub-project of an [incubating, aspiring Apereo product][AngularJS-portal website on incubating], `rssToJson` requires contributors and contributions to comply with [Apereo inbound intellectual property licensing practices][].
 
 The short version:
 
