@@ -51,13 +51,12 @@ public class RsstoJsonServiceImpl implements RssToJsonService {
         }
         jsonToReturn.put("items", entries);
         jsonToReturn.put("status", "ok");
+        logger.error(jsonToReturn.toString());
         return jsonToReturn;
     }
 
     @Override
     public JSONObject getJsonifiedXMLUrl(String feed) {
-        logger.error("In the service method! " + feed);
-
         JSONObject xmlJSONObj = rssToJsonDao.getXMLFeed(feed);
         return xmlJSONObj;
     }
