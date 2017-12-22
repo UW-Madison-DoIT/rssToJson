@@ -2,6 +2,7 @@ package edu.wisc.my.rssToJson.service;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.XML;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import com.rometools.rome.feed.synd.SyndFeed;
 
 import edu.wisc.my.rssToJson.dao.RssToJsonDao;
 
-
 @Service
 public class RsstoJsonServiceImpl implements RssToJsonService {
     protected final Logger logger = LoggerFactory.getLogger(getClass());
@@ -21,14 +21,14 @@ public class RsstoJsonServiceImpl implements RssToJsonService {
     private RssToJsonDao rssToJsonDao;
 
     @Autowired
-    void setRssToJsonDao(RssToJsonDao rssToJsonDao){
+    void setRssToJsonDao(RssToJsonDao rssToJsonDao) {
         this.rssToJsonDao = rssToJsonDao;
     }
 
     @Override
     public JSONObject getJsonFromURL(String endpoint) {
         SyndFeed feed = rssToJsonDao.getRssFeed(endpoint);
-        if(feed == null){
+        if (feed == null) {
             logger.warn("No feed returned for endpoint: {}", endpoint);
             return null;
         }
@@ -41,7 +41,7 @@ public class RsstoJsonServiceImpl implements RssToJsonService {
         feedInfo.put("pubDate", feed.getPublishedDate());
         jsonToReturn.put("feed", feedInfo);
         JSONArray entries = new JSONArray();
-        for(SyndEntry entry : feed.getEntries()){
+        for (SyndEntry entry : feed.getEntries()) {
             JSONObject feedItem = new JSONObject();
             feedItem.put("title", entry.getTitle());
             feedItem.put("link", entry.getLink());
@@ -51,6 +51,13 @@ public class RsstoJsonServiceImpl implements RssToJsonService {
         }
         jsonToReturn.put("items", entries);
         jsonToReturn.put("status", "ok");
+        logger.error(jsonToReturn.toString());
         return jsonToReturn;
+    }
+
+    @Override
+    public JSONObject getJsonifiedXMLUrl(String feed) {
+        JSONObject xmlJSONObj = rssToJsonDao.getXMLFeed(feed);
+        return xmlJSONObj;
     }
 }
