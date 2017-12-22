@@ -40,7 +40,7 @@ public class RssToJsonController {
     }
 
     private RssToJsonService getService(String path){
-       
+       return null;
     }
 
     @RequestMapping(value="/rssTransform/{feed}/xml")

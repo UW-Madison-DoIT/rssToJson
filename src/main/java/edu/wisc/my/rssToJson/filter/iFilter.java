@@ -6,4 +6,5 @@ public interface iFilter{
 
     public JSONObject getFilteredJSON(JSONObject rawJSON);
     public String healthCheck();
+    
 }

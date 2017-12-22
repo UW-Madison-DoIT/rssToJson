@@ -27,6 +27,7 @@ public class RsstoJsonServiceImpl implements RssToJsonService {
 
     @Override
     public JSONObject getJsonFromURL(String endpoint) {
+
         SyndFeed feed = rssToJsonDao.getRssFeed(endpoint);
         if (feed == null) {
             logger.warn("No feed returned for endpoint: {}", endpoint);

@@ -35,7 +35,6 @@ public class WudFilter implements iFilter{
             feedInfo.put("link", "https://union.wisc.edu/events-and-activities/event-calendar/");
             feedInfo.put("description", rootNode.findValue("description").asText());
             feedInfo.put("pubDate", rootNode.findValue("lastBuildDate").asText());
-            responseObj.
             JsonNode eventsArray = rootNode.path("event");
             logger.error(eventsArray.toString());
         }catch(Exception e){
