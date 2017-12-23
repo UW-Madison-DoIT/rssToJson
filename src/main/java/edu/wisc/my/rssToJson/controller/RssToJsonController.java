@@ -42,31 +42,11 @@ public class RssToJsonController {
     private RssToJsonService getService(String path){
        return null;
     }
-
-    @RequestMapping(value="/rssTransform/{feed}/xml")
-    public @ResponseBody void getXmlifiedRssUrl(HttpServletRequest request,
-            HttpServletResponse response, @PathVariable String feed) {
-        
-        logger.debug("Attempting to retrieve feed for endpoint {}", feed);
-        JSONObject jsonToReturn = rssToJsonService.getJsonFromURL(feed);
-        if(jsonToReturn == null){
-            logger.error("No feed for endpoint {}", feed);
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        }else{
-            response.setContentType("application/json");
-            try{
-                response.getWriter().write(jsonToReturn.toString());
-                response.setStatus(HttpServletResponse.SC_OK);
-            }catch(IOException e){
-                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            }
-        }
-    }
     
     @RequestMapping(value="/rssTransform/{feed}/xml")
     public @ResponseBody void getJsonifiedXMLUrl(HttpServletRequest request, HttpServletResponse response,
             @PathVariable String feed) {
-        logger.warn("In XML controller method", feed);
+
         JSONObject jsonFromFeed = rssToJsonService.getJsonifiedXMLUrl(feed);
         if (jsonFromFeed == null) {
             logger.error("No feed for endpoint {}", feed);
@@ -83,6 +63,7 @@ public class RssToJsonController {
                 response.getWriter().write(jsonToReturn.toString());
                 response.setStatus(HttpServletResponse.SC_OK);
             } catch (IOException e) {
+                logger.warn(e.getMessage());
                 response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             }
         }

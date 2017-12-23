@@ -51,7 +51,6 @@ public enum XmlFilter {
         i++; //1   
         String filterClass = XmlFilter.toTitleCase(filterName) + "Filter";
         i++;  //2
-        logger.error(filterClass + " IS THE NAME, DADDY-O");
         String pkg = this.getClass().getPackage().getName();
         logger.error(this.getClass().getCanonicalName());
         logger.error(pkg + "." +filterClass);
