@@ -8,12 +8,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Primary;
 
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 
 import edu.wisc.my.rssToJson.dao.RssToJsonDao;
-
+@Primary
 @Service
 public class RsstoJsonServiceImpl implements RssToJsonService {
     protected final Logger logger = LoggerFactory.getLogger(getClass());
