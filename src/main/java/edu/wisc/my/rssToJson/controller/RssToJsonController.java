@@ -25,22 +25,10 @@ public class RssToJsonController {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());
     private RssToJsonService rssToJsonService;
-    private BeanFactory bf;
-
- 
-
-    @Autowired
-    public void setBeanFactory(BeanFactory beanFactory){
-        this.bf = beanFactory;
-    }
 
     @Autowired
     public void setRSSToJSONService(RssToJsonService rssToJsonService) {
         this.rssToJsonService = rssToJsonService;
-    }
-
-    private RssToJsonService getService(String path){
-       return null;
     }
     
     @RequestMapping(value="/rssTransform/{feed}/xml")
@@ -52,7 +40,7 @@ public class RssToJsonController {
             logger.error("No feed for endpoint {}", feed);
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         } else {
-            /* The XmlFilter is a custom class based on the name of your endpoint.
+            /* The filter is a custom class based on the name of your endpoint.
              *  For example, if your feed is called "sports", then you should
             // have a class in the filter package called "SportsFilter".
             // All filter classes should implement the iFilter interface.
@@ -60,36 +48,17 @@ public class RssToJsonController {
             // The static method XmlFilter.getXmlFilter(feed) will use
             // reflection to return a filter with your custom business logic. 
             */
-            XmlFilter xmlFilter = XmlFilter.getXmlFilter(feed);
-            iFilter filter = xmlFilter.getFilter(feed);
+            iFilter filter = XmlFilter.getXmlFilter(feed);
 
             JSONObject jsonToReturn = filter.getFilteredJSON(jsonFromFeed);
             response.setContentType("application/json");
             try {
-                logger.warn("In the controller try catch");
-                logger.warn(jsonToReturn.toString());
                 response.getWriter().write(jsonToReturn.toString());
                 response.setStatus(HttpServletResponse.SC_OK);
             } catch (IOException e) {
                 logger.warn(e.getMessage());
                 response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             }
-        }
-    }
-
-    private iFilter getFilter(String feedName){
-          String className = "Filter_wud";
-          logger.error("CLASSNAME _ " + className);
-        try{
-          logger.error("Step 1 - make a class");
-          Class classy = Class.forName(className);
-          logger.error("Get an instance");
-          iFilter filter = (iFilter) classy.newInstance();
-          return filter;
-        } catch (Exception e) {
-            logger.error ("NO FILTER FOUND FOR RSS TYPE " + feedName);
-            logger.error(e.getMessage());
-            return null;
         }
     }
 

@@ -54,7 +54,6 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
                 stringBuffer.append((char) i);
             }
             String xmlString = stringBuffer.toString();
-            logger.warn(xmlString.substring(1, 200));
             jsonObject = XML.toJSONObject(xmlString);
         } catch (Exception e) {
             logger.warn(e.getMessage());
@@ -69,7 +68,6 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
             logger.warn("No corresponding feed url for requested endpoint {}", feed);
             return null;
         }
-        logger.warn(endpointURL);
         return endpointURL;
     }
 

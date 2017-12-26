@@ -26,10 +26,7 @@ public class WudFilter implements iFilter{
         JSONObject feedInfo = new JSONObject();
 
         try{
-            logger.error("try");
             JsonNode rootNode = om.readTree(rawJSON.toString());
-            logger.error(rawJSON.toString());
-             
             feedInfo.put("title", rootNode.findValue("title").asText());
             feedInfo.put("link", "https://union.wisc.edu/events-and-activities/event-calendar/");
             feedInfo.put("description", rootNode.findValue("description").asText());
@@ -57,7 +54,7 @@ public class WudFilter implements iFilter{
 
             
         }catch(Exception e){
-            logger.error("NODES " + e.getMessage());
+            logger.error(e.getMessage());
         };
 
         return feedInfo;
