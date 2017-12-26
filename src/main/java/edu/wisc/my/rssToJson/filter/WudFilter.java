@@ -2,9 +2,6 @@ package edu.wisc.my.rssToJson.filter;
 
 import java.util.Iterator;
 
-import javax.json.JsonObject;
-
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -32,7 +29,6 @@ public class WudFilter implements iFilter{
             logger.error("try");
             JsonNode rootNode = om.readTree(rawJSON.toString());
             logger.error(rawJSON.toString());
-           // logger.error(rootNode.findValue("title").asText());
              
             feedInfo.put("title", rootNode.findValue("title").asText());
             feedInfo.put("link", "https://union.wisc.edu/events-and-activities/event-calendar/");

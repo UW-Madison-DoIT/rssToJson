@@ -52,6 +52,14 @@ public class RssToJsonController {
             logger.error("No feed for endpoint {}", feed);
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         } else {
+            /* The XmlFilter is a custom class based on the name of your endpoint.
+             *  For example, if your feed is called "sports", then you should
+            // have a class in the filter package called "SportsFilter".
+            // All filter classes should implement the iFilter interface.
+            // 
+            // The static method XmlFilter.getXmlFilter(feed) will use
+            // reflection to return a filter with your custom business logic. 
+            */
             XmlFilter xmlFilter = XmlFilter.getXmlFilter(feed);
             iFilter filter = xmlFilter.getFilter(feed);
 
