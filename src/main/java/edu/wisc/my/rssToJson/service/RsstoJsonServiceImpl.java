@@ -61,35 +61,34 @@ public class RsstoJsonServiceImpl implements RssToJsonService {
 
       String jsonString = jsonToClean.toString();
       String tellTaleHighBitIndicator = "\\u";
-
-      if (jsonString.contains(tellTaleHighBitIndicator)) {
-        try {
-          Resource resource = new ClassPathResource("stringCleaner.json");
-          // resource should be a valid json file containing an array of string replacement objects
-          BufferedReader br = new BufferedReader(new InputStreamReader(resource.getInputStream()));
-          StringBuilder stringBuilder = new StringBuilder();
-          String line;
-          while ((line = br.readLine()) != null) {
-            stringBuilder.append(line).append(' ');
-          }
-          br.close();
-          String json = stringBuilder.toString();
-          JSONObject fileContents = new JSONObject(json);
-          JSONArray replacements = fileContents.getJSONArray("replacements");
-          // for each string replacement specified in the resource file,
-          // we run a replace with the specified alternative.
-          for (int i = 0; i < replacements.length(); ++i) {
-              JSONObject replacement = replacements.getJSONObject(i);
-              String replaceThis = Pattern.quote(replacement.getString("offender")) ;
-              String withThat = replacement.getString("replacement");
-              jsonString = jsonString.replaceAll(replaceThis, withThat);
-            }
-            return new JSONObject(jsonString);
-        } catch (Exception e) {
-          logger.error("Exception cleaning rss feed:: ", e);
-          return jsonToClean;
-        }
-    }
+      if (!jsonString.contains(tellTaleHighBitIndicator)) {
         return jsonToClean;
+      }
+      try {
+        Resource resource = new ClassPathResource("stringCleaner.json");
+        // resource should be a valid json file containing an array of string replacement objects
+        BufferedReader br = new BufferedReader(new InputStreamReader(resource.getInputStream()));
+        StringBuilder stringBuilder = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+          stringBuilder.append(line).append(' ');
+        }
+        br.close();
+        String json = stringBuilder.toString();
+        JSONObject fileContents = new JSONObject(json);
+        JSONArray replacements = fileContents.getJSONArray("replacements");
+        // for each string replacement specified in the resource file,
+        // we run a replace with the specified alternative.
+        for (int i = 0; i < replacements.length(); ++i) {
+            JSONObject replacement = replacements.getJSONObject(i);
+            String replaceThis = Pattern.quote(replacement.getString("offender")) ;
+            String withThat = replacement.getString("replacement");
+            jsonString = jsonString.replaceAll(replaceThis, withThat);
+          }
+          return new JSONObject(jsonString);
+      } catch (Exception e) {
+        logger.error("Exception cleaning rss feed:: ", e);
+        return jsonToClean;
+      }
   }
 }
