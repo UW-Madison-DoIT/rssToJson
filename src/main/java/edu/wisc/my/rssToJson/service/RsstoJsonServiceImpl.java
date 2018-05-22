@@ -58,10 +58,8 @@ public class RsstoJsonServiceImpl implements RssToJsonService {
     }
 
     private JSONObject getJSONCleaned(JSONObject jsonToClean) {
-
-      String jsonString = jsonToClean.toString();
       String tellTaleHighBitIndicator = "\\u";
-      if (!jsonString.contains(tellTaleHighBitIndicator)) {
+      if (!jsonToClean.toString().contains(tellTaleHighBitIndicator)) {
         return jsonToClean;
       }
       try {
