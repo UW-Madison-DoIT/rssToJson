@@ -29,7 +29,7 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
      * @param env the env to set
      */
     @Autowired
-    public void setEnv(Environment env) {
+    void setEnv(Environment env) {
       this.env = env;
     }
 
