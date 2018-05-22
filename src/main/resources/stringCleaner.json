@@ -1,0 +1,12 @@
+{
+  "replacements": [
+    {"offender": "\\u2019",
+      "replacement": "'",
+      "comment": "Subs curly right quote mark with a sensible apostrophe"
+    },
+    {"offender": "\\u2014",
+      "replacement": "-",
+      "comment": "Subs en dash with a sensible ascii minus"
+    }
+  ]
+}
