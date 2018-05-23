@@ -23,6 +23,17 @@ public class RsstoJsonServiceImpl implements RssToJsonService {
 
     private RssToJsonDao rssToJsonDao;
 
+    // JsonArray of unicode characters
+    // offender is the unicode character we're replacing
+    // replacement is the ASCII character we're subbing in.
+    private String unicodeToClean = "{\"replacements\":[{" +
+      "\"offender\":" + "\"\\\\" + "u2019" + "\"," + //right curly single quote
+      "\"replacement\":" + "\"'\"" + // single quote
+      "}, {" +
+      "\"offender\":" + "\"\\\\" + "u2014" + "\"," + //en dash
+      "\"replacement\":" + "\"-\"" + "}" + //minus sign
+      "]}";
+
     @Autowired
     void setRssToJsonDao(RssToJsonDao rssToJsonDao){
         this.rssToJsonDao = rssToJsonDao;
@@ -54,37 +65,20 @@ public class RsstoJsonServiceImpl implements RssToJsonService {
         }
         jsonToReturn.put("items", entries);
         jsonToReturn.put("status", "ok");
-        return getJSONCleaned(jsonToReturn);
-    }
-
-    private JSONObject getJSONCleaned(JSONObject jsonToClean) {
-      String tellTaleHighBitIndicator = "\\u";
-      if (!jsonToClean.toString().contains(tellTaleHighBitIndicator)) {
-        return jsonToClean;
-      }
-      try {
-        Resource resource = new ClassPathResource("stringCleaner.json");
-        BufferedReader br = new BufferedReader(new InputStreamReader(resource.getInputStream()));
-        StringBuilder stringBuilder = new StringBuilder();
-        String line;
-        while ((line = br.readLine()) != null) {
-          stringBuilder.append(line).append(' ');
-        }
-        br.close();
-        String json = stringBuilder.toString();
-        JSONObject fileContents = new JSONObject(json);
-        JSONArray replacements = fileContents.getJSONArray("replacements");
+        //Clean undesirable unicode literals from the JsonObject
+        JSONObject unicodeReplacements = new JSONObject(unicodeToClean);
+        JSONArray replacements = unicodeReplacements.getJSONArray("replacements");
+        String jsonStringToClean = jsonToReturn.toString();
         // for each string replacement in the resource file, we replace with the alternative.
         for (int i = 0; i < replacements.length(); ++i) {
-            JSONObject replacement = replacements.getJSONObject(i);
-            String replaceThis = Pattern.quote(replacement.getString("offender")) ;
-            String withThat = replacement.getString("replacement");
-            jsonString = jsonString.replaceAll(replaceThis, withThat);
-          }
-          return new JSONObject(jsonString);
-      } catch (Exception e) {
-        logger.error("Exception cleaning rss feed:: ", e);
-        return jsonToClean;
-      }
-  }
+          JSONObject replacement = replacements.getJSONObject(i);
+          String replaceThis = Pattern.quote(replacement.getString("offender")) ;
+          String withThat = replacement.getString("replacement");
+          jsonStringToClean = jsonStringToClean.replaceAll(replaceThis, withThat);
+        }
+        //Reconstitute the JsonObject
+        jsonToReturn = new JSONObject(jsonStringToClean);
+        return jsonToReturn;
+    }
+
 }
