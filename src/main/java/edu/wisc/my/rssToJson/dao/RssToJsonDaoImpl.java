@@ -21,10 +21,10 @@ import com.rometools.rome.io.SyndFeedInput;
 @PropertySource("classpath:endpoint.properties")
 @Repository
 public class RssToJsonDaoImpl implements RssToJsonDao{
-    
+
     protected final Logger logger = LoggerFactory.getLogger(getClass());
     private Environment env;
-    
+
     /**
      * @param env the env to set
      */
@@ -40,7 +40,7 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
         //see if property file has corresponding url for requested endpoint
         String endpointURL = env.getProperty(feedEndpoint);
         if (endpointURL == null){
-          logger.warn("No corresponding feed url for requested endpoint {}", 
+          logger.warn("No corresponding feed url for requested endpoint {}",
                   feedEndpoint);
           return null;
         }
@@ -57,5 +57,5 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
         }
         return feed;
     }
-    
+
 }
