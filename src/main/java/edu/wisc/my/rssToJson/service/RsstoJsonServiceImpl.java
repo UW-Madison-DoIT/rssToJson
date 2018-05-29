@@ -53,9 +53,9 @@ public class RsstoJsonServiceImpl implements RssToJsonService {
         jsonToReturn.put("status", "ok");
         String stringToClean = jsonToReturn.toString();
         // replace right single curly quote with apostrophe
-        stringToClean =  stringToClean.replaceAll("\\\u2019", "'");
+        stringToClean =  stringToClean.replaceAll("\\\\u2019", "'");
         // replace en-dash with minus
-        stringToClean = stringToClean.replaceAll("\\\u2014", "-");
+        stringToClean = stringToClean.replaceAll("\\\\u2014", "-");
         return new JSONObject(stringToClean);
     }
 }
