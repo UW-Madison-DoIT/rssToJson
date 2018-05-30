@@ -1,0 +1,17 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/" version="2.0">
+  <channel>
+    <title>Sample RSS Feed</title>
+    <link>https://my.wisc.edu//</link>
+    <description>Sample RSS Feed</description>
+    <pubDate>Wed, 30 May 2018 15:20:06 GMT</pubDate>
+    <item>
+      <title>News story with possessive’s apostrophe</title>
+      <link>https://www.fileformat.info/info/unicode/char/2019/browsertest.htm</link>
+      <description>
+        I would love to go back in time and smack the unicode and ascii people.
+      </description>
+      <pubDate>Thu, 24 May 2018 05:00:00 GMT</pubDate>
+      <guid isPermaLink="false">293651</guid>
+    </item>
+  </channel>
+</rss>
