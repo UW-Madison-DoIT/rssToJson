@@ -8,7 +8,7 @@
       <title>News story with possessive’s apostrophe</title>
       <link>https://www.fileformat.info/info/unicode/char/2019/browsertest.htm</link>
       <description>
-        I would love to go back in time and smack the unicode and ascii people.
+        Apostrophe in title should render as an apostrophe.
       </description>
       <pubDate>Thu, 24 May 2018 05:00:00 GMT</pubDate>
       <guid isPermaLink="false">293651</guid>
