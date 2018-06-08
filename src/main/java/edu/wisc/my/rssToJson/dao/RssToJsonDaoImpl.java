@@ -49,9 +49,10 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
             HttpClient client = HttpClientBuilder.create().build();
             HttpGet request = new HttpGet(endpointURL);
             request.setHeader(HttpHeaders.USER_AGENT, "rss-to-json service");
+            request.setHeader(HttpHeaders.CONTENT_ENCODING, "UTF-8");
             HttpResponse response = client.execute(request);
             SyndFeedInput input = new SyndFeedInput();
-            feed = input.build(new InputStreamReader(response.getEntity().getContent()));
+            feed = input.build(new InputStreamReader(response.getEntity().getContent()), "UTF-8");
             feed.setFeedType("UTF-8");
             logger.debug("CONTENT OF FEED " + endpointURL);
             logger.debug(feed.toString());
