@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>edu.wisc.my.apps</groupId>
     <artifactId>rssToJson</artifactId>
-    <version>1.0.8</version>
+    <version>1.0.9-SNAPSHOT</version>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -14,7 +14,7 @@
         <connection>scm:git:git@github.com:UW-Madison-DoIT/rssToJson.git</connection>
         <developerConnection>scm:git:git@github.com:UW-Madison-DoIT/rssToJson.git</developerConnection>
         <url>https://github.com/UW-Madison-DoIT/rssToJson</url>
-        <tag>rssToJson-1.0.8</tag>
+        <tag>HEAD</tag>
     </scm>
     <distributionManagement>
         <snapshotRepository>
