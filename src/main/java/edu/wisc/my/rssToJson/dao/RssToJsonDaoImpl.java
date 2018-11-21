@@ -62,7 +62,7 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
    }
    
    private String getEndpointURL(String feed) {
-       String endpointURL = getEndpointURL(feed);
+       String endpointURL = env.getProperty(feed);
        if (endpointURL == null) {
            logger.warn("No corresponding feed url for requested endpoint {}", feed);
            return null;
