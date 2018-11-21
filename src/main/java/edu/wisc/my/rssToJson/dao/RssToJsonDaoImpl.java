@@ -26,10 +26,10 @@ import com.rometools.rome.io.SyndFeedInput;
 @PropertySource("classpath:endpoint.properties")
 @Repository
 public class RssToJsonDaoImpl implements RssToJsonDao{
-    
+
     protected final Logger logger = LoggerFactory.getLogger(getClass());
     private Environment env;
-    
+
     /**
      * @param env the env to set
      */
@@ -75,19 +75,34 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
     @Cacheable(cacheNames="feeds", sync=true)
     public SyndFeed getRssFeed(String feedEndpoint) {
         logger.info("Fetching feed for {} ", feedEndpoint);
+<<<<<<< HEAD
         String endpointURL = getEndpointURL(feedEndpoint);
+=======
+        //see if property file has corresponding url for requested endpoint
+        String endpointURL = env.getProperty(feedEndpoint);
+        if (endpointURL == null){
+          logger.warn("No corresponding feed url for requested endpoint {}",
+                  feedEndpoint);
+          return null;
+        }
+>>>>>>> 61b53a07c296353d9048807f21eaa6321beb0900
         SyndFeed feed = null;
         try{
             HttpClient client = HttpClientBuilder.create().build();
             HttpGet request = new HttpGet(endpointURL);
             request.setHeader(HttpHeaders.USER_AGENT, "rss-to-json service");
+            request.setHeader(HttpHeaders.CONTENT_ENCODING, "UTF-8");
             HttpResponse response = client.execute(request);
             SyndFeedInput input = new SyndFeedInput();
-            feed = input.build(new InputStreamReader(response.getEntity().getContent()));
+            feed = input.build(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+            feed.setFeedType("UTF-8");
+            logger.debug("CONTENT OF FEED " + endpointURL);
+            logger.debug(feed.toString());
+
         }catch(Exception ex){
             logger.error("Error while fetching xml from {}", endpointURL, ex);
         }
         return feed;
     }
-    
+
 }

@@ -2,6 +2,9 @@
 /target/
 /logs/*
 .project
+rssToJson.iml
+.idea/*
+.vscode/*
 .settings
 .classpath
 /bin
