@@ -75,17 +75,15 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
     @Cacheable(cacheNames="feeds", sync=true)
     public SyndFeed getRssFeed(String feedEndpoint) {
         logger.info("Fetching feed for {} ", feedEndpoint);
-<<<<<<< HEAD
+
         String endpointURL = getEndpointURL(feedEndpoint);
-=======
         //see if property file has corresponding url for requested endpoint
-        String endpointURL = env.getProperty(feedEndpoint);
         if (endpointURL == null){
           logger.warn("No corresponding feed url for requested endpoint {}",
                   feedEndpoint);
           return null;
         }
->>>>>>> 61b53a07c296353d9048807f21eaa6321beb0900
+
         SyndFeed feed = null;
         try{
             HttpClient client = HttpClientBuilder.create().build();
