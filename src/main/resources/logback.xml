@@ -52,7 +52,7 @@
   <root level="ERROR">
       <appender-ref ref="LOG"/>
   </root>
-  <logger name="edu.wisc" additivity="false" level="WARN">
+  <logger name="edu.wisc" additivity="false" level="ERROR">
         <appender-ref ref="LOG"/>
     </logger>
 
