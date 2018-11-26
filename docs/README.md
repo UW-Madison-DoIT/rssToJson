@@ -2,6 +2,8 @@
 
 Converts RSS feeds to `JSON` (suitable for rendering with e.g. the RSS [widget type][angularjs-portal widgets docs] in [AngularJS-portal][]).
 
+There is also the functionality to plug in a custom XML for feeds which are not in a standard rss format.
+
 Intended for deployment as a "microservice".
 
 ## Confidence-inspiring badges
@@ -80,6 +82,13 @@ returns something like
   ]
 }
 ```
+##Custom Filters /{webapp-name}/rssTransform/custom/{key}
+
+Custom filters allow you to consume an xml feed which is not in standard rss format, and return it as json using custom business logic you provide.
+
+As in the standard rss processor, {key} is the string identifying your feed. To utilize the custom filter, create a class which implements the iFilter interface.
+
+Give your class the case-insensitive name of your feed, plus the word "filter".. i.e. if your endpoint is sports=http://www.ncaa.com/news/ncaa/d1/rss.xml, then your class would be named SportsFilter.
 
 [AngularJS-portal]: https://github.com/UW-Madison-DoIT/angularjs-portal
 [angularjs-portal widgets docs]: http://uw-madison-doit.github.io/angularjs-portal/latest/#/md/widgets
