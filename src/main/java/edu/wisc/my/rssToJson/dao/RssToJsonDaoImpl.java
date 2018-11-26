@@ -43,12 +43,10 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
     void setEnv(Environment env) {
       this.env = env;
     }   
-    private String httpResponseAsString(String feedName) throws IOException {
-        logger.error("HTTP Response method " + feedName);
+    private String httpResponseAsString(String url) throws IOException {
+        logger.error("HTTP Response method " + url);
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
-            String url = getEndpointURL(feedName);
-                         logger.error("ONE " + url);
             HttpGet httpget = new HttpGet(url);
             logger.error(httpget.toString());
 
@@ -69,8 +67,6 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
                     }
                 }
             };
-            logger.error("ONE POINT FIVE " + httpclient.toString());
-        
             String responseBody = httpclient.execute(httpget, responseHandler);
             logger.error("ONE POINT SIX " + responseBody);
             return responseBody;
@@ -94,7 +90,7 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
        return jsonObject;
    }
    
-   private String getEndpointURL(String feed) {
+   public String getEndpointURL(String feed) {
        logger.error("GETTING THE ENDPOINT FOR " + feed);
        String endpointURL = env.getProperty(feed);
        logger.error(endpointURL);
@@ -109,7 +105,6 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
     @Cacheable(cacheNames="feeds", sync=true)
     public SyndFeed getRssFeed(String feedEndpoint) {
       try{  
-        logger.error("INTO THE TRY");  
         String result = httpResponseAsString(feedEndpoint);
         SyndFeedInput input = new SyndFeedInput();
         InputStream stream = new ByteArrayInputStream(result.getBytes("UTF-8"));

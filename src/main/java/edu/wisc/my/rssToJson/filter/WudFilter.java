@@ -14,8 +14,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
     }
      public JSONObject getFilteredJSON(JSONObject rawJSON){
         ObjectMapper om = new ObjectMapper();
-        JSONObject responseObj = new JSONObject();
         JSONObject feedInfo = new JSONObject();
+        JSONObject feed = new JSONObject();
+        JSONArray items = new JSONArray();
          try{
             JsonNode rootNode = om.readTree(rawJSON.toString());
             feedInfo.put("title", rootNode.findValue("title").asText());
@@ -27,7 +28,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
             JsonNode events = rootNode.findValue("event");
   
             Iterator<JsonNode> iter = events.elements();
-             ArrayList<JSONObject> eventNodes = new ArrayList();
             
             while(iter.hasNext()){
                 JSONObject item = new JSONObject();
@@ -35,17 +35,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
                 item.put("title", anEvent.findValue("event_title").asText());
                 item.put("link", anEvent.findValue("url").asText());
                 item.put("description",anEvent.findValue("short_description").asText());
-                JSONObject thisItem = new JSONObject();
-                thisItem.put("item", item);
-                eventNodes.add(thisItem);
+                items.put(item);
             }
-             JSONArray allEvents = new JSONArray(eventNodes);
-            feedInfo.put("items",allEvents);
+            feed.put("feed", feedInfo);
+            feed.put("items",items);
+
              
         }catch(Exception e){
             logger.error(e.getMessage());
         };
-         return feedInfo;
+         feed.put("status", "ok");
+         return feed;
     }
      public String healthCheck(){
         return "WudFilter health check";

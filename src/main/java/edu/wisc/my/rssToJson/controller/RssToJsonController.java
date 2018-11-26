@@ -31,13 +31,13 @@ public class RssToJsonController {
         this.rssToJsonService = rssToJsonService;
     }
 
-    @RequestMapping(value="/rssTransform/{feed}/xml")
-    public @ResponseBody void getJsonifiedXMLUrl(HttpServletRequest request, HttpServletResponse response,
+    @RequestMapping(value="/rssTransform/custom/{feed}")
+    public @ResponseBody void customFeedAsJson(HttpServletRequest request, HttpServletResponse response,
             @PathVariable String feed) {
-
-        JSONObject jsonFromFeed = rssToJsonService.getJsonifiedXMLUrl(feed);
+        
+        JSONObject jsonFromFeed = rssToJsonService.getCustomizedUrl(feed);
         if (jsonFromFeed == null) {
-            logger.error("No feed for endpoint {}", feed);
+            logger.warn("No feed for endpoint {}", feed);
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         } else {
             /* The filter is a custom class based on the name of your endpoint.
@@ -63,7 +63,7 @@ public class RssToJsonController {
     }
     
     @RequestMapping(value="/rssTransform/{feed}")
-    public @ResponseBody void getJsonifiedRssUrl(HttpServletRequest request,
+    public @ResponseBody void rssAsJson(HttpServletRequest request,
             HttpServletResponse response, @PathVariable String feed) {
         
         logger.debug("Attempting to retrieve feed for endpoint {}", feed);

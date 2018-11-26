@@ -2,11 +2,9 @@ package edu.wisc.my.rssToJson.service;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.XML;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.context.annotation.Primary;
 
@@ -29,7 +27,8 @@ public class RsstoJsonServiceImpl implements RssToJsonService {
 
     @Override
     public JSONObject getJsonFromURL(String endpoint) {
-        SyndFeed feed = rssToJsonDao.getRssFeed(endpoint);
+        String url = rssToJsonDao.getEndpointURL(endpoint);
+        SyndFeed feed = rssToJsonDao.getRssFeed(url);
         if(feed == null){
             logger.warn("No feed returned for endpoint: {}", endpoint);
             return null;
@@ -62,8 +61,8 @@ public class RsstoJsonServiceImpl implements RssToJsonService {
     }
 
     @Override
-    public JSONObject getJsonifiedXMLUrl(String feed) {
-        JSONObject xmlJSONObj = rssToJsonDao.getXMLFeed(feed);
+    public JSONObject getCustomizedUrl(String endpoint) {
+        JSONObject xmlJSONObj = rssToJsonDao.getXMLFeed(endpoint);
         return xmlJSONObj;
     }
 }
