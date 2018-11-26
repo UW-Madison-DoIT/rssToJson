@@ -82,7 +82,7 @@ returns something like
   ]
 }
 ```
-##Custom Filters /{webapp-name}/rssTransform/prop/custom/{key}
+##Custom Filters /{webapp-name}/rssTransform/custom/{key}
 
 Custom filters allow you to consume an xml feed which is not in standard rss format, and return it as json using custom business logic you provide.
 
