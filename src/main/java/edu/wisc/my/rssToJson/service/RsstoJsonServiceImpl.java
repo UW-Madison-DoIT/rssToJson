@@ -12,8 +12,8 @@ import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 
 import edu.wisc.my.rssToJson.dao.RssToJsonDao;
-@Primary
 
+@Primary
 @Service
 public class RsstoJsonServiceImpl implements RssToJsonService {
     protected final Logger logger = LoggerFactory.getLogger(getClass());
