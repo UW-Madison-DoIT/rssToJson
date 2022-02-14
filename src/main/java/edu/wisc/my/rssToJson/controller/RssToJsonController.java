@@ -37,9 +37,11 @@ public class RssToJsonController {
         response.setContentType("application/json");
         response.getWriter().write(jsonToReturn.toString());
         response.setStatus(HttpServletResponse.SC_OK);
+
       } catch (FeedIdentifierUndefinedException notFoundException) {
         logger.error("No feed defined for id {}; is endpoint.properties configured for this feed?", feed, notFoundException);
         response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404 NOT FOUND
+
       } catch (Exception e) {
         logger.warn("Problem retrieving feed with id {}", feed, e);
         response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
