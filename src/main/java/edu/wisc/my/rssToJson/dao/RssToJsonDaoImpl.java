@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import edu.wisc.my.rssToJson.exception.FeedIdentifierUndefinedException;
+import edu.wisc.my.rssToJson.exception.ResponseTooBigException;
 import org.apache.commons.io.input.BOMInputStream;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
@@ -62,10 +63,9 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
             HttpEntity responseEntity = response.getEntity();
             long contentLengthInBytes = responseEntity.getContentLength();
 
-            // before reading the response into a String, verify it is small
+            // before reading the response, verify it is small
             if (contentLengthInBytes < 0 || contentLengthInBytes > MAX_RESPONSE_BYTES) {
-              throw new RuntimeException("Response from " + feedEndpoint + " was " +
-                contentLengthInBytes + " bytes which exceeded maximum size " + MAX_RESPONSE_BYTES + " bytes.");
+              throw new ResponseTooBigException(feedEndpoint, contentLengthInBytes, MAX_RESPONSE_BYTES);
             }
 
             InputStream responseStream = responseEntity.getContent();
