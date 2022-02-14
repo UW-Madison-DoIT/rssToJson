@@ -3,6 +3,7 @@ package edu.wisc.my.rssToJson.dao;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import edu.wisc.my.rssToJson.exception.FeedIdentifierUndefinedException;
 import org.apache.commons.io.input.BOMInputStream;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
@@ -47,7 +48,7 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
         if (endpointURL == null){
           logger.warn("No corresponding feed url for requested endpoint {}",
                   feedEndpoint);
-          return null;
+          throw new FeedIdentifierUndefinedException(feedEndpoint);
         }
         SyndFeed feed = null;
         try{
