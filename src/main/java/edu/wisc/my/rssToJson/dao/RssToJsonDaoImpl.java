@@ -1,7 +1,9 @@
 package edu.wisc.my.rssToJson.dao;
 
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.apache.commons.io.input.BOMInputStream;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
@@ -55,7 +57,7 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
             request.setHeader(HttpHeaders.CONTENT_ENCODING, "UTF-8");
             HttpResponse response = client.execute(request);
             SyndFeedInput input = new SyndFeedInput();
-            feed = input.build(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+
             HttpEntity responseEntity = response.getEntity();
             long contentLengthInBytes = responseEntity.getContentLength();
 
@@ -64,6 +66,13 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
               throw new RuntimeException("Response from " + feedEndpoint + " was " +
                 contentLengthInBytes + " bytes which exceeded maximum size " + MAX_RESPONSE_BYTES + " bytes.");
             }
+
+            InputStream responseStream = responseEntity.getContent();
+
+            // wrap in ByteOrderMarker-aware input stream to filter out a leading byte order marker if present
+            BOMInputStream bomInputStream = new BOMInputStream(responseStream);
+
+            feed = input.build(new InputStreamReader(bomInputStream, "UTF-8"));
             feed.setFeedType("UTF-8");
             logger.debug("CONTENT OF FEED " + endpointURL);
             logger.debug(feed.toString());
