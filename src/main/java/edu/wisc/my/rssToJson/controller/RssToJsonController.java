@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.wisc.my.rssToJson.exception.FeedIdentifierUndefinedException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,27 +27,26 @@ public class RssToJsonController {
     public void setRSSToJSONService(RssToJsonService rssToJsonService) {
         this.rssToJsonService = rssToJsonService;
     }
-    
+
     @RequestMapping(value="/rssTransform/{feed}")
     public @ResponseBody void getJsonifiedRssUrl(HttpServletRequest request,
             HttpServletResponse response, @PathVariable String feed) {
-        
+      try {
         logger.debug("Attempting to retrieve feed for endpoint {}", feed);
         JSONObject jsonToReturn = rssToJsonService.getJsonFromURL(feed);
-        if(jsonToReturn == null){
-            logger.error("No feed for endpoint {}", feed);
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        }else{
-            response.setContentType("application/json");
-            try{
-                response.getWriter().write(jsonToReturn.toString());
-                response.setStatus(HttpServletResponse.SC_OK);
-            }catch(IOException e){
-                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            }
-        }
-    }
+        response.setContentType("application/json");
+        response.getWriter().write(jsonToReturn.toString());
+        response.setStatus(HttpServletResponse.SC_OK);
 
+      } catch (FeedIdentifierUndefinedException notFoundException) {
+        logger.error("No feed defined for id {}; is endpoint.properties configured for this feed?", feed, notFoundException);
+        response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404 NOT FOUND
+
+      } catch (Exception e) {
+        logger.warn("Problem retrieving feed with id {}", feed, e);
+        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+      }
+    }
 
     @RequestMapping("/")
     public @ResponseBody

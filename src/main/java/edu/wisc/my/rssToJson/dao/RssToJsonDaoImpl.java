@@ -1,9 +1,16 @@
 package edu.wisc.my.rssToJson.dao;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
+import com.rometools.rome.io.FeedException;
+import edu.wisc.my.rssToJson.exception.FeedIdentifierUndefinedException;
+import edu.wisc.my.rssToJson.exception.ResponseTooBigException;
 import org.apache.commons.io.input.BOMInputStream;
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
@@ -41,46 +48,71 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
     @Override
     @Cacheable(cacheNames="feeds", sync=true)
     public SyndFeed getRssFeed(String feedEndpoint) {
-        logger.info("Fetching feed for {} ", feedEndpoint);
+        logger.trace("Fetching feed for {} ", feedEndpoint);
         //see if property file has corresponding url for requested endpoint
         String endpointURL = env.getProperty(feedEndpoint);
         if (endpointURL == null){
           logger.warn("No corresponding feed url for requested endpoint {}",
                   feedEndpoint);
-          return null;
+          throw new FeedIdentifierUndefinedException(feedEndpoint);
         }
         SyndFeed feed = null;
         try{
-            HttpClient client = HttpClientBuilder.create().build();
-            HttpGet request = new HttpGet(endpointURL);
-            request.setHeader(HttpHeaders.USER_AGENT, "rss-to-json service");
-            request.setHeader(HttpHeaders.CONTENT_ENCODING, "UTF-8");
-            HttpResponse response = client.execute(request);
-            SyndFeedInput input = new SyndFeedInput();
 
-            HttpEntity responseEntity = response.getEntity();
-            long contentLengthInBytes = responseEntity.getContentLength();
-
-            // before reading the response into a String, verify it is small
-            if (contentLengthInBytes < 0 || contentLengthInBytes > MAX_RESPONSE_BYTES) {
-              throw new RuntimeException("Response from " + feedEndpoint + " was " +
-                contentLengthInBytes + " bytes which exceeded maximum size " + MAX_RESPONSE_BYTES + " bytes.");
+            try {
+              feed = urlToSyndFeedAsCharset(endpointURL, StandardCharsets.UTF_8);
+            } catch (Exception e) {
+              // try again as US-ASCII
+              feed = urlToSyndFeedAsCharset(endpointURL, StandardCharsets.US_ASCII);
             }
 
-            InputStream responseStream = responseEntity.getContent();
+            logger.trace("CONTENT OF FEED " + endpointURL);
+            logger.trace(feed.toString());
 
-            // wrap in ByteOrderMarker-aware input stream to filter out a leading byte order marker if present
-            BOMInputStream bomInputStream = new BOMInputStream(responseStream);
-
-            feed = input.build(new InputStreamReader(bomInputStream, "UTF-8"));
-            feed.setFeedType("UTF-8");
-            logger.debug("CONTENT OF FEED " + endpointURL);
-            logger.debug(feed.toString());
-
-        }catch(Exception ex){
+        } catch(Exception ex){
             logger.error("Error while fetching xml from {}", endpointURL, ex);
+            throw new RuntimeException("Problem converting " + endpointURL + " to a SyndFeed.", ex);
         }
         return feed;
     }
 
+
+  /**
+   * Given a URL and a desired charset, attempt to parse the response from that URL as the given charset.
+   * @param url
+   * @param charset UTF-8 or US-ASCII
+   * @throws IOException on IO failures retrieving the URL
+   * @throws ResponseTooBigException if response from URL is too big
+   * @return
+   */
+  protected SyndFeed urlToSyndFeedAsCharset(String url, Charset charset) throws IOException, FeedException {
+
+    try {
+      HttpClient client = HttpClientBuilder.create().build();
+      HttpGet request = new HttpGet(url);
+      request.setHeader(HttpHeaders.USER_AGENT, "rss-to-json service");
+      request.setHeader(HttpHeaders.CONTENT_ENCODING, charset.name());
+      HttpResponse response = client.execute(request);
+      SyndFeedInput input = new SyndFeedInput();
+
+      HttpEntity responseEntity = response.getEntity();
+      long contentLengthInBytes = responseEntity.getContentLength();
+
+      // before reading the response, verify it is small
+      if (contentLengthInBytes < 0 || contentLengthInBytes > MAX_RESPONSE_BYTES) {
+        throw new ResponseTooBigException(url, contentLengthInBytes, MAX_RESPONSE_BYTES);
+      }
+
+      InputStream responseStream = responseEntity.getContent();
+
+      // wrap in ByteOrderMarker-aware input stream to filter out a leading byte order marker if present
+      BOMInputStream bomInputStream = new BOMInputStream(responseStream);
+      SyndFeed feed = input.build(new InputStreamReader(bomInputStream, charset));
+      feed.setFeedType(charset.name());
+      return feed;
+    } catch (Exception e) {
+      logger.warn("Failed to read {} as {} to build a SyndFeed.", url, charset.name(), e);
+      throw new RuntimeException("Problem reading from " + url + " using endcoding " + charset.name(), e);
+    }
+  }
 }
