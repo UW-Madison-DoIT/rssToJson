@@ -17,16 +17,20 @@
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
+      <snapshotRepository>
+        <id>myuw-snapshots</id>
+        <url>https://artifacts.doit.wisc.edu/artifactory/myuw-maven-local-snapshot/</url>
+      </snapshotRepository>
+      <repository>
+        <id>myuw-releases</id>
+        <url>https://artifacts.doit.wisc.edu/artifactory/myuw-maven-local-release/</url>
+      </repository>
     </distributionManagement>
     <repositories>
+        <repository>
+          <id>myuw-releases</id>
+          <url>https://artifacts.doit.wisc.edu/artifactory/myuw-maven-local-release/</url>
+        </repository>
         <repository>
             <id>spring-snapshots</id>
             <url>http://repo.spring.io/libs-snapshot</url>
