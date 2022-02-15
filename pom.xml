@@ -139,6 +139,7 @@
                 </dependencies>
                 <configuration>
                   <autoVersionSubmodules>true</autoVersionSubmodules>
+                  <localCheckout>true</localCheckout>
                   <useReleaseProfile>false</useReleaseProfile>
                   <releaseProfiles>release</releaseProfiles>
                   <pushChanges>false</pushChanges>
