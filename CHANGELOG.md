@@ -1,6 +1,6 @@
 # Change log
 
-## Next (1.0.9?)
+## 1.0.9 - 2022-02-15
 
 + When failing to parse a feed as UTF-8, tries again as US-ASCII.
 + When reading the remote feed, wrap it in a BOMInputStream
