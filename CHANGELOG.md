@@ -1,5 +1,9 @@
 # Change log
 
+## Next
+
+Now building 1.0.10-SNAPSHOT.
+
 ## 1.0.9 - 2022-02-15
 
 + When failing to parse a feed as UTF-8, tries again as US-ASCII.
