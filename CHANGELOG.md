@@ -4,6 +4,10 @@
 
 Now building 1.0.10-SNAPSHOT.
 
++ Do not reject responses indicating size `-1`,
+  since apparently that indicates unknown size,
+  not reliably unreasonably large size.
+
 ## 1.0.9 - 2022-02-15
 
 + When failing to parse a feed as UTF-8, tries again as US-ASCII.

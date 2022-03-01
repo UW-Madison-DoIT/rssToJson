@@ -98,8 +98,12 @@ public class RssToJsonDaoImpl implements RssToJsonDao{
       HttpEntity responseEntity = response.getEntity();
       long contentLengthInBytes = responseEntity.getContentLength();
 
+      logger.trace("Read " + contentLengthInBytes + " bytes from " + url);
+
       // before reading the response, verify it is small
-      if (contentLengthInBytes < 0 || contentLengthInBytes > MAX_RESPONSE_BYTES) {
+      // does not check for size -1,
+      // because in practice that was meaning "unknown" not "unreasonably large"
+      if (contentLengthInBytes > MAX_RESPONSE_BYTES) {
         throw new ResponseTooBigException(url, contentLengthInBytes, MAX_RESPONSE_BYTES);
       }
 
