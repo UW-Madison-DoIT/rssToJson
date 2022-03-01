@@ -1,10 +1,10 @@
 # Change log
 
-## Next
+## 1.0.10 - 2022-03-01
 
-Now building 1.0.10-SNAPSHOT.
-
-+ Do not reject responses indicating size `-1`,
++ Backs off from overzealous too-large-response blocking
+  introduced in 1.0.9:
+  Do not reject responses indicating size `-1`,
   since apparently that indicates unknown size,
   not reliably unreasonably large size.
 
