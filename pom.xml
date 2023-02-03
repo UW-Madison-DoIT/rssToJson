@@ -17,16 +17,33 @@
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>
-      <snapshotRepository>
-        <id>myuw-snapshots</id>
-        <url>https://artifacts.doit.wisc.edu/artifactory/myuw-maven-local-snapshot/</url>
-      </snapshotRepository>
       <repository>
-        <id>myuw-releases</id>
-        <url>https://artifacts.doit.wisc.edu/artifactory/myuw-maven-local-release/</url>
-      </repository>
+        <id>myuw-releases-artifactorydoit</id>
+        <url>https://artifactorydoit.jfrog.io/artifactory/myuw-maven-local-release-cloud/</url>
+    </repository>
+    <snapshotRepository>
+        <id>myuw-snapshots-artifactorydoit</id>
+        <url>https://artifactorydoit.jfrog.io/artifactory/myuw-maven-local-snapshot-cloud/</url>
+    </snapshotRepository>
     </distributionManagement>
     <repositories>
+
+      <repository>
+        <id>myuw-releases-artifactorydoit</id>
+        <url>https://artifactorydoit.jfrog.io/artifactory/myuw-maven-local-release-cloud/</url>
+        <releases><enabled>true</enabled></releases>
+        <snapshots><enabled>false</enabled></snapshots>
+      </repository>
+      <repository>
+        <id>myuw-snapshots-artifactorydoit</id>
+        <url>https://artifactorydoit.jfrog.io/artifactory/myuw-maven-local-snapshot-cloud/</url>
+        <releases><enabled>false</enabled></releases>
+        <snapshots>
+          <enabled>true</enabled>
+          <updatePolicy>always</updatePolicy>
+        </snapshots>
+      </repository>
+
         <repository>
           <id>myuw-releases</id>
           <url>https://artifacts.doit.wisc.edu/artifactory/myuw-maven-local-release/</url>
